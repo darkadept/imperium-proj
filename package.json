@@ -1,0 +1,14 @@
+{
+  "name": "imperium-proj",
+  "version": "1.0.0",
+  "description": "A project that uses Imperium Framework",
+  "main": "index.js",
+  "author": "Mike Kornelson",
+  "license": "MIT",
+  "scripts": {
+    "start": "imperium start"
+  },
+  "dependencies": {
+    "@imperium/scripts": "file:/home/mike/dev/imperium/packages/scripts/"
+  }
+}
