@@ -9,6 +9,7 @@
     "start": "imperium start"
   },
   "dependencies": {
-    "@imperium/scripts": "file:/home/mike/dev/imperium/packages/scripts/"
+    "@imperium/scripts": "file:/home/mike/dev/imperium/packages/scripts/",
+    "@imperium/babel-preset-imperium": "file:/home/mike/dev/imperium/packages/babel-preset-imperium/"
   }
 }
