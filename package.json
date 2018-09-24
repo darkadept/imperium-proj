@@ -1,29 +1,32 @@
 {
-  "name": "imperium-proj",
-  "version": "0.1.0",
-  "description": "A project that uses Imperium Framework",
-  "main": "index.js",
-  "author": "Mike Kornelson",
-  "license": "MIT",
-  "scripts": {
-    "start": "imperium dev",
-    "prod": "imperium prod",
-    "build": "imperium build"
-  },
-  "devDependencies": {
-    "@imperium/dev-deps": "../imperium/packages/dev-deps"
-  },
-  "dependencies": {
-    "@imperium/auth": "../imperium/packages/auth",
-    "@imperium/core": "../imperium/packages/core",
-    "@imperium/graphql": "../imperium/packages/graphql",
-    "@thx/date-ui": "^7.1.3",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
-    "immutable": "^3.8.2",
-    "mongodb": "^3.1.3",
-    "react-router-dom": "^4.3.1",
-    "express": "^4.16.3",
-    "semantic-ui-react": "^0.82.2"
-  }
+	"name": "imperium-proj",
+	"version": "0.1.0",
+	"description": "A project that uses Imperium Framework",
+	"main": "index.js",
+	"author": "Mike Kornelson",
+	"license": "MIT",
+	"scripts": {
+		"start": "imperium dev",
+		"prod": "imperium prod",
+		"build": "imperium build",
+		"lint": "eslint --cache 'src/**/*.js'"
+	},
+	"devDependencies": {
+		"@imperium/dev-deps": "../imperium/packages/dev-deps",
+		"@imperium/eslint-config-imperium": "../imperium/packages/eslint-config-imperium"
+	},
+	"dependencies": {
+		"@imperium/auth": "../imperium/packages/auth",
+		"@imperium/core": "../imperium/packages/core",
+		"@imperium/graphql": "../imperium/packages/graphql",
+		"@thx/date-ui": "^7.1.3",
+		"react": "^16.4.2",
+		"react-dom": "^16.4.2",
+		"immutable": "^3.8.2",
+		"mongodb": "^3.1.3",
+		"react-router-dom": "^4.3.1",
+		"express": "^4.16.3",
+		"semantic-ui-react": "^0.82.2",
+		"eslint": "^5.4.0"
+	}
 }

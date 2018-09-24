@@ -9,5 +9,5 @@ export const resolvers = {
 	},
 	Query: {
 		getSample: (obj, args, ctx) => ctx.models.Sample.getOne(),
-	}
+	},
 };
