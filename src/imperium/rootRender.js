@@ -6,7 +6,7 @@ import React from 'react';
 export default function rootRender(inner) {
 	return (
 		<div id="yay">
-
+			testing
 		</div>
 	);
 }
