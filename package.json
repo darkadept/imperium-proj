@@ -9,7 +9,8 @@
 		"start": "imperium dev",
 		"prod": "imperium prod",
 		"build": "imperium build",
-		"lint": "eslint --cache 'src/**/*.js'"
+		"lint": "eslint --cache 'src/**/*.js'",
+		"dev:link": "yarn link @imperium/dev-deps && yarn link @imperium/eslint-config-imperium && yarn link @imperium/auth && yarn link @imperium/core && yarn link @imperium/graphql && yarn link @imperium/babel-preset-imperium"
 	},
 	"devDependencies": {
 		"@imperium/dev-deps": "../imperium/packages/dev-deps",
@@ -19,14 +20,14 @@
 		"@imperium/auth": "../imperium/packages/auth",
 		"@imperium/core": "../imperium/packages/core",
 		"@imperium/graphql": "../imperium/packages/graphql",
-		"@thx/date-ui": "^7.1.3",
-		"react": "^16.5.2",
-		"react-dom": "^16.5.2",
+		"@thx/controls": "^8.0.0",
+		"react": "^16.6.3",
+		"react-dom": "^16.6.3",
 		"immutable": "^3.8.2",
-		"mongodb": "^3.1.6",
+		"mongodb": "^3.1.10",
 		"react-router-dom": "^4.3.1",
-		"express": "^4.16.3",
-		"semantic-ui-react": "^0.82.5",
-		"eslint": "^5.6.0"
+		"express": "^4.16.4",
+		"semantic-ui-react": "^0.83.0",
+		"eslint": "^5.9.0"
 	}
 }
