@@ -1,0 +1,53 @@
+{
+  "name": "thr4",
+  "description": "THR Enterprise Application",
+  "version": "4.1.0",
+  "author": "Mike Kornelson <m.kornelson@makingyourmilescount.com>",
+  "contributors": [
+    "Shayne Thiessen <s.thiessen@makingyourmilescount.com>",
+    "Jonathan Spomer <j.spomer@makingyourmilescount.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:darkadept/thr4.git"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "engines": {
+    "node": ">=12"
+  },
+  "scripts": {
+    "xstart": "NODE_ENV=development node src/core/server/dev.js",
+    "start": "imperium dev",
+    "xprod": "node build/server.js",
+    "prod": "imperium prod",
+    "build": "imperium build imperium.js",
+    "build:server": "NODE_ENV=production webpack --config webpack/server.prod.js",
+    "build:client": "NODE_ENV=production webpack --config webpack/client.prod.js",
+    "lint": "eslint --cache --ext ts,js,tsx src",
+    "ts": "tsc",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "thrsvc-rest": "NODE_ENV=development webpack --config webpack/thrsvc-rest.dev.js --watch",
+    "thrsvc-proc": "NODE_ENV=development webpack --config webpack/thrsvc-proc.dev.js --watch",
+    "thrsvc-migrate": "NODE_ENV=development webpack --display \"errors-only\" --config webpack/thrsvc-migrate.dev.js && node ./build/thrsvc-migrate.js",
+    "docs:md": "tools/docs/jsdocmd.sh",
+    "docs:jsdoc": "tools/docs/jsdoc.sh",
+    "docs:rest": "tools/docs/redoc.sh",
+    "docs:build": "yarn docs:rest && yarn docs:md && yarn docs:jsdoc && cd website && yarn build",
+    "docs": "cd website && yarn start",
+    "docker:build": "./docker.sh thr4.dockerfile thr4",
+    "docker:test": "docker run --rm -it -p 8081:4000 docker-steinbach:5000/thr4:latest /bin/bash"
+  },
+  "dependencies": {
+    "debug": "^4.1.1",
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  },
+  "devDependencies": {
+    "@imp/core": "file:.yalc/@imp/core",
+    "dotenv": "^8.1.0"
+  }
+}

@@ -1,3 +1,9 @@
 {
-  "extends": "@imperium/eslint-config-imperium"
+	"extends": "@imperium/eslint-config-imperium"
+//	"rules": {
+//		"@typescript-eslint/explicit-function-return-type": ["off", {"allowExpressions": true, "allowTypedFunctionExpressions": true}],
+//		"react/prop-types": "off",
+//		"@typescript-eslint/no-explicit-any": "off",
+//		"func-names": "off"
+//	}
 }
