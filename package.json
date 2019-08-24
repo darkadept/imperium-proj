@@ -21,13 +21,14 @@
 		"@imperium/core": "../imperium/packages/core",
 		"@imperium/graphql": "../imperium/packages/graphql",
 		"@thx/controls": "^8.0.0",
-		"react": "^16.6.3",
-		"react-dom": "^16.6.3",
+		"@types/zen-observable": "^0.8.0",
+		"eslint": "^5.9.0",
+		"express": "^4.16.4",
 		"immutable": "^3.8.2",
 		"mongodb": "^3.1.10",
+		"react": "^16.6.3",
+		"react-dom": "^16.6.3",
 		"react-router-dom": "^4.3.1",
-		"express": "^4.16.4",
-		"semantic-ui-react": "^0.83.0",
-		"eslint": "^5.9.0"
+		"semantic-ui-react": "^0.83.0"
 	}
 }

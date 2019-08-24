@@ -8,7 +8,16 @@ export const rootRoute = {
 	content: () => <Redirect to="/dashboard"/>,
 };
 
+// Default route props
 export default {
-	// layout: AppLayout,
+	layout: (props) => {
+		const {route} = props;
+		return (
+			<div>
+				<h1>Layout</h1>
+				<route.content/>
+			</div>
+		);
+	},
 	redirect: true,
 };

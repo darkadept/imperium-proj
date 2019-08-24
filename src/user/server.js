@@ -10,9 +10,13 @@ export default function() {
 		schema,
 		resolvers,
 		async startup(context) {
-			const {Users} = context.models;
+			const {Users, Auth} = context.models;
 
-			if (!await Users.getByEmail('darkadept@durbn.net')) {
+			d('Getting my user.');
+			const user = await Users.getByEmail('darkadept@durbn.net');
+			if (user) {
+				// await Auth.signIn('darkadept@durbn.net', 'sysadmin');
+			} else {
 				d('Creating default user');
 				await Users.createUser(
 					{
