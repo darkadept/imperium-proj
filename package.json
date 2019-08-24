@@ -1,10 +1,5 @@
 {
-	"author": "Mike Kornelson <m.kornelson@makingyourmilescount.com>",
-	"contributors": [
-		"Shayne Thiessen <s.thiessen@makingyourmilescount.com>",
-		"Jonathan Spomer <j.spomer@makingyourmilescount.com>",
-		"Matthew"
-	],
+	"author": "Mike Kornelson <darkadept@durbn.net>",
 	"repository": {
 		"type": "git",
 		"url": "git@github.com:darkadept/thr4.git"

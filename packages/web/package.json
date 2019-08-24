@@ -1,12 +1,8 @@
 {
-  "name": "thr4",
-  "description": "THR Enterprise Application",
-  "version": "4.1.0",
-  "author": "Mike Kornelson <m.kornelson@makingyourmilescount.com>",
-  "contributors": [
-    "Shayne Thiessen <s.thiessen@makingyourmilescount.com>",
-    "Jonathan Spomer <j.spomer@makingyourmilescount.com>"
-  ],
+  "name": "imperium-proj",
+  "description": "Imperium test project",
+  "version": "4.0.0",
+  "author": "Mike Kornelson <darkadept@durbn.net>",
   "repository": {
     "type": "git",
     "url": "git@github.com:darkadept/thr4.git"
@@ -40,14 +36,17 @@
     "docker:test": "docker run --rm -it -p 8081:4000 docker-steinbach:5000/thr4:latest /bin/bash"
   },
   "dependencies": {
+    "@imperium/core": "file:.yalc/@imperium/core",
     "debug": "^4.1.1",
+    "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "lodash": "^4.17.15",
     "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react-dom": "^16.9.0",
+    "semantic-ui-react": "^0.88.0"
   },
   "devDependencies": {
-    "@imp/core": "file:.yalc/@imp/core",
-    "dotenv": "^8.1.0"
+    "@imperium/dev": "file:.yalc/@imperium/dev",
+    "eslint": "^6.2.1"
   }
 }
