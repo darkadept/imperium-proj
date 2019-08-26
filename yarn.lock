@@ -876,7 +876,9 @@
     babel-plugin-transform-react-remove-prop-types "^0.4.24"
 
 "@imperium/core@file:packages/web/.yalc/@imperium/core":
-  version "4.0.0-398d17bc"
+  version "4.0.0-a224ccb7"
+  dependencies:
+    express "^4.17.1"
 
 "@imperium/dev@file:packages/web/.yalc/@imperium/dev":
   version "4.0.0-13aad315"

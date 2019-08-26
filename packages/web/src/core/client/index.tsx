@@ -1,8 +1,10 @@
 import React from 'react';
 import {render} from 'react-dom';
-import client from '@imperium/core/lib/client';
+import ImperiumClient from '@imperium/core/lib/ImperiumClient';
 
-client();
+const client = new ImperiumClient();
+client.start();
+
 render(
 	<div>
 		hello world
