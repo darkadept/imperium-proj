@@ -1,38 +1,33 @@
 {
-	"author": "Mike Kornelson <darkadept@durbn.net>",
-	"repository": {
-		"type": "git",
-		"url": "git@github.com:darkadept/thr4.git"
-	},
-	"bugs": {
-		"url": "https://github.com/darkadept/thr4/issues"
-	},
-	"license": "UNLICENSED",
-	"private": true,
-	"workspaces": [
-		"packages/*"
-	],
-	"scripts": {
-		"start": "imperium dev",
-		"prod": "imperium prod",
-		"build": "imperium build",
-		"lint": "eslint --cache --ext ts,js,tsx src",
-		"ts": "tsc",
-		"test": "jest",
-		"test:coverage": "jest --coverage",
-		"thrsvc-rest": "NODE_ENV=development webpack --config webpack/thrsvc-rest.dev.js --watch",
-		"thrsvc-proc": "NODE_ENV=development webpack --config webpack/thrsvc-proc.dev.js --watch",
-		"thrsvc-migrate": "NODE_ENV=development webpack --display \"errors-only\" --config webpack/thrsvc-migrate.dev.js && node ./build/thrsvc-migrate.js",
-		"docs:md": "tools/docs/jsdocmd.sh",
-		"docs:jsdoc": "tools/docs/jsdoc.sh",
-		"docs:rest": "tools/docs/redoc.sh",
-		"docs:build": "yarn docs:rest && yarn docs:md && yarn docs:jsdoc && cd website && yarn build",
-		"docs": "cd website && yarn start",
-		"docker:build": "./docker.sh thr4.dockerfile thr4",
-		"docker:test": "docker run --rm -it -p 8081:4000 docker-steinbach:5000/thr4:latest /bin/bash"
-	},
-	"devDependencies": {
-		"eslint": "^6.2.1",
-		"lerna": "^3.16.4"
-	}
+  "author": "Mike Kornelson <darkadept@durbn.net>",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:darkadept/thr4.git"
+  },
+  "bugs": {
+    "url": "https://github.com/darkadept/thr4/issues"
+  },
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "lerna": "lerna",
+    "build": "lerna run build",
+    "lint": "lerna run lint",
+    "lint:fix": "lerna run lint:fix",
+    "ts": "lerna run ts",
+    "test": "lerna run test --stream --concurrency 1"
+  },
+  "devDependencies": {
+    "@imperium/eslint-config-imperium": "file:.yalc/@imperium/eslint-config-imperium",
+    "@imperium/prettier-config-imperium": "file:.yalc/@imperium/prettier-config-imperium",
+    "eslint": "^6.2.1",
+    "lerna": "^3.16.4",
+    "prettier": "^1.18.2",
+    "typescript": "^3.5.3"
+  }
 }
