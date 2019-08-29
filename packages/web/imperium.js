@@ -1,5 +1,3 @@
-const path = require('path');
-
 module.exports = {
 	build: {
 		server: {
@@ -9,5 +7,5 @@ module.exports = {
 		client: {
 			devtool: 'source-map',
 		},
-	}
+	},
 };

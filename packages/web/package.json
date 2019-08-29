@@ -13,7 +13,7 @@
     "node": ">=12"
   },
   "scripts": {
-    "start": "imperium dev",
+    "start": "imperium dev imperium.js",
     "prod": "imperium prod",
     "build": "imperium build imperium.js",
     "lint": "eslint --cache --ext ts,js,tsx src",
@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@imperium/core": "file:.yalc/@imperium/core",
+    "@imperium/graphql": "file:.yalc/@imperium/graphql",
     "debug": "^4.1.1",
     "dotenv": "^8.1.0",
     "lodash": "^4.17.15",
