@@ -1,4 +1,4 @@
-import ImperiumClient from '@imperium/core/lib/ImperiumClient';
+import {ImperiumClient} from '@imperium/core/client';
 import clientModules from './clientModules';
 
 const client = new ImperiumClient({
