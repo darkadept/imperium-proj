@@ -1,0 +1,11 @@
+extend type Query {
+	getIt: String
+}
+
+extend type Mutation {
+	changeIt: String
+}
+
+extend type Subscription {
+	getItChanged: String
+}

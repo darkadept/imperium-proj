@@ -23,8 +23,10 @@
     "prettier": "prettier"
   },
   "dependencies": {
+    "@apollo/react-hooks": "^3.1.0",
     "@imperium/core": "file:.yalc/@imperium/core",
     "@imperium/graphql": "file:.yalc/@imperium/graphql",
+    "@thx/router": "^10.2.0",
     "debug": "^4.1.1",
     "dotenv": "^8.1.0",
     "lodash": "^4.17.15",
