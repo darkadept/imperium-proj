@@ -8,26 +8,30 @@ export default function sample() {
 		schema: [Sample],
 		resolvers(server) {
 			const pubsub = server.options.graphqlPubSub;
-			if (!pubsub) throw new Error('Subscriptions not enabled');
-			return {
+
+			const res = {
 				Query: {
 					getIt() {
-						return 'the message';
+						return a;
 					},
 				},
 				Mutation: {
 					changeIt() {
 						a++;
-						pubsub.publish('x', {getItChanged: `${a}`});
-						return 'changed';
-					},
-				},
-				Subscription: {
-					getItChanged: {
-						subscribe: () => pubsub.asyncIterator(['x']),
+						if (pubsub) pubsub.publish('x', {getItChanged: `${a}`});
+						return `New a: ${a}`;
 					},
 				},
 			};
+
+			if (pubsub) {
+				res.Subscription = {
+					getItChanged: {
+						subscribe: () => pubsub.asyncIterator(['x']),
+					},
+				};
+			}
+			return res;
 		},
 	};
 }
