@@ -1,16 +1,12 @@
 import debug from 'debug';
 import React from 'react';
 import {useSubscription} from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import subscribe from './subscribe.graphql';
 
 const d = debug('app.core.TestQuery');
 
 export default function TestSubscription() {
-	const {data, loading} = useSubscription(gql`
-		subscription onStuff {
-			getItChanged
-		}
-	`);
+	const {data, loading} = useSubscription(subscribe);
 
 	d('subscription', loading, data);
 

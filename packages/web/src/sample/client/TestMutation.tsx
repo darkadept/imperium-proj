@@ -1,16 +1,12 @@
 import debug from 'debug';
 import React from 'react';
 import {useMutation} from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import mutate from './mutate.graphql';
 
 const d = debug('app.core.TestMutation');
 
 export default function TestMutation() {
-	const [doChange, {data, loading}] = useMutation(gql`
-		mutation {
-			changeIt
-		}
-	`);
+	const [doChange, {data, loading}] = useMutation(mutate);
 
 	d('mutation', loading, data);
 

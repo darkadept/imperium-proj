@@ -23,6 +23,7 @@
     "test": "lerna run test --stream --concurrency 1"
   },
   "devDependencies": {
+    "@imperium/babel-preset-imperium": "file:.yalc/@imperium/babel-preset-imperium",
     "@imperium/eslint-config-imperium": "file:.yalc/@imperium/eslint-config-imperium",
     "@imperium/prettier-config-imperium": "file:.yalc/@imperium/prettier-config-imperium",
     "eslint": "^6.2.1",

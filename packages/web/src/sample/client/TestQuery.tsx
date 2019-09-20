@@ -1,16 +1,12 @@
 import debug from 'debug';
 import React from 'react';
 import {useQuery} from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import query from './query.graphql';
 
 const d = debug('app.core.TestQuery');
 
 export default function TestQuery() {
-	const {loading, error, data} = useQuery(gql`
-		query {
-			getIt
-		}
-	`);
+	const {loading, error, data} = useQuery(query);
 
 	d('query', loading, error, data);
 

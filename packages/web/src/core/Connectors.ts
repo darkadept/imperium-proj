@@ -9,7 +9,7 @@ export default class Connectors implements ImperiumConnectors {
 	async create() {
 		const mongoose = await connect(
 			process.env.MONGOURL,
-			{useNewUrlParser: true},
+			{useNewUrlParser: true, useUnifiedTopology: true},
 		);
 
 		this._redisClient = redis.createClient({
