@@ -27,6 +27,7 @@
     "@imperium/auth": "file:.yalc/@imperium/auth",
     "@imperium/core": "file:.yalc/@imperium/core",
     "@imperium/graphql": "file:.yalc/@imperium/graphql",
+    "@imperium/user": "file:.yalc/@imperium/user",
     "@thx/extras": "^10.4.0",
     "@thx/router": "^10.2.0",
     "debug": "^4.1.1",

@@ -1,4 +1,7 @@
+import debug from 'debug';
 import Sample from './Sample.graphqls';
+
+const d = debug('app.sample.graphql');
 
 let a = 0;
 
@@ -18,6 +21,7 @@ export default function sample() {
 				Mutation: {
 					changeIt() {
 						a++;
+						d(`New a: ${a}`);
 						if (pubsub) pubsub.publish('x', {getItChanged: `${a}`});
 						return `New a: ${a}`;
 					},
