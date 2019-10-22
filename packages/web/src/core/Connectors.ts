@@ -1,5 +1,6 @@
 import {ImperiumConnectors} from '@imperium/core';
 import {ConnectionManager, Connection} from 'typeorm';
+import path from 'path';
 
 export default class Connectors implements ImperiumConnectors {
 	_redisClient: any;
@@ -14,7 +15,7 @@ export default class Connectors implements ImperiumConnectors {
 			database: process.env.PG_DATABASE,
 			port: (process.env.PG_PORT as unknown) as number,
 			synchronize: true,
-			entities: ['../users/models/*'],
+			entities: [path.resolve(__dirname, '../users/models/*')],
 		});
 		await this._postgresConnection.connect();
 		return {pg: this._postgresConnection};

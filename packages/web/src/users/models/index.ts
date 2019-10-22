@@ -24,7 +24,7 @@ class Permission extends BaseEntity {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column('string')
+	@Column('varchar')
 	name: string;
 }
 
@@ -33,7 +33,7 @@ class Role extends BaseEntity {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column('string')
+	@Column('varchar')
 	name: string;
 
 	@ManyToMany(type => Permission)
@@ -46,16 +46,16 @@ class User extends BaseEntity implements ILoginable, IResource {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column('string')
+	@Column('varchar')
 	firstName: string;
 
-	@Column('string')
+	@Column('varchar')
 	lastName: string;
 
-	@Column('string')
+	@Column('varchar')
 	email: string;
 
-	@Column('string')
+	@Column('varchar')
 	passwordHash: string;
 
 	@Column(type => Permission)
@@ -73,10 +73,10 @@ class Account extends BaseEntity implements IResource {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column('number')
+	@Column('integer')
 	number: number;
 
-	@Column('string')
+	@Column('varchar')
 	name: string;
 
 	@Column(type => Permission)
