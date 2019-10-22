@@ -1,17 +1,17 @@
 import debug from 'debug';
 import React from 'react';
-import TestQuery from '../sample/client/TestQuery';
-import TestSubscription from '../sample/client/TestSubscription';
-import TestMutation from '../sample/client/TestMutation';
+import {Link} from 'react-router-dom';
 
 const d = debug('app.core.App');
 
+// <Image src="https://makingyourmilescount.com/wp-content/themes/ST_Light_Responsive_Business/img/header-right.png" />
+
 export default function App() {
 	return (
-		<div>
-			<TestQuery />
-			<TestMutation />
-			<TestSubscription />
-		</div>
+		<>
+			<Link to="/users">Users</Link>
+			<br/>
+			<Link to="/accounts">Accounts</Link>
+		</>
 	);
 }

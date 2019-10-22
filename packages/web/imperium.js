@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
 	build: {
 		server: {
@@ -7,6 +9,16 @@ module.exports = {
 		client: {
 			minimize: true,
 			devtool: 'source-map',
+			rules: [
+				{
+					test: /\.css$/,
+					exclude: /node_modules/,
+					use: [{loader: 'style-loader!css-loader'}],
+				},
+			],
 		},
+	},
+	web: {
+		template: path.resolve(process.cwd(), './src/core/index.html'),
 	},
 };

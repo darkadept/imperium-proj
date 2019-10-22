@@ -25,19 +25,24 @@
   "dependencies": {
     "@apollo/react-hooks": "^3.1.0",
     "@imperium/auth": "file:.yalc/@imperium/auth",
+    "@imperium/babel-preset-imperium": "file:.yalc/@imperium/babel-preset-imperium",
     "@imperium/core": "file:.yalc/@imperium/core",
     "@imperium/graphql": "file:.yalc/@imperium/graphql",
     "@imperium/user": "file:.yalc/@imperium/user",
     "@thx/extras": "^10.4.0",
     "@thx/router": "^10.2.0",
+    "@types/node": "^12.11.2",
     "debug": "^4.1.1",
     "dotenv": "^8.1.0",
     "lodash": "^4.17.15",
     "mongoose": "^5.6.11",
+    "pg": "^7.12.1",
     "react": "^16.9.0",
+    "react-bootstrap": "^1.0.0-beta.14",
     "react-dom": "^16.9.0",
     "redis": "^2.8.0",
-    "semantic-ui-react": "^0.88.0"
+    "semantic-ui-react": "^0.88.0",
+    "typeorm": "^0.2.19"
   },
   "devDependencies": {
     "@imperium/dev": "file:.yalc/@imperium/dev"

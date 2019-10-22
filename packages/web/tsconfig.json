@@ -19,8 +19,9 @@
 		"pretty": true,
 		// Support JSX in TSX files
 		"jsx": "react",
-		"noImplicitAny": false
-		// I don't think I really want this set to false
+		"noImplicitAny": false,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true
 	},
 	"include": [
 		"src/**/*"
