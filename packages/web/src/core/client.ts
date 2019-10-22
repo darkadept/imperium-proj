@@ -1,22 +1,21 @@
 import debug from 'debug';
 import ImperiumClient from '@imperium/core/client';
-import {ContainerLayout} from '@thx/router';
+import {RouteDirector} from '@imperium/router';
 import clientModules from './clientModules';
 import routes from '../users/client/routes';
-import App from './App';
+import DefaultComponent from '../sample/client/components/DefaultComponent';
 
 const d = debug('app.client');
 
 const client = new ImperiumClient({
 	clientModules,
-	routeDefaults: {
-		layout: ContainerLayout,
-		redirect: false,
-	},
-	rootRoute: {
-		path: '/',
-		component: App,
-		exact: true,
+	rootComponent: RouteDirector,
+	rootProps: {
+		routeDefaults: {
+			// layout: ContainerLayout, // TODO this will be re-enabled in the future
+			redirect: false,
+		},
+		rootRoute: {path: '/', content: DefaultComponent, exact: true},
 	},
 	routes,
 });
@@ -24,3 +23,11 @@ const client = new ImperiumClient({
 client.start().catch(err => {
 	d(err);
 });
+
+// TODO working on HMR
+// if (module.hot) {
+// 	module.hot.accept('./clientModules', () => {
+// 		d('Hot Accept: clientModules');
+// 		client.renderRoot(clientModules, RouteDirector);
+// 	});
+// }

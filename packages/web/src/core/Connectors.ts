@@ -1,7 +1,4 @@
-import {connect} from 'mongoose';
 import {ImperiumConnectors} from '@imperium/core';
-import {SharedCache} from '@thx/extras/server';
-import redis from 'redis';
 import {ConnectionManager, Connection} from 'typeorm';
 
 export default class Connectors implements ImperiumConnectors {

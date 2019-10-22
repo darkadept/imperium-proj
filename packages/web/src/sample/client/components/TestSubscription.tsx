@@ -1,7 +1,7 @@
 import debug from 'debug';
 import React from 'react';
 import {useSubscription} from '@apollo/react-hooks';
-import subscribe from './subscribe.graphql';
+import subscribe from '../graphql/subscribe.graphql';
 
 const d = debug('app.core.TestQuery');
 
