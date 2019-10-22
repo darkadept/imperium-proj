@@ -13,12 +13,15 @@ export default class Connectors implements ImperiumConnectors {
 			password: process.env.PG_PASSWORD,
 			database: process.env.PG_DATABASE,
 			port: (process.env.PG_PORT as unknown) as number,
+			synchronize: true,
+			entities: ['../users/models/*'],
 		});
 		await this._postgresConnection.connect();
 		return {pg: this._postgresConnection};
+		// return {};
 	}
 
 	async close() {
-		await this._postgresConnection.close();
+		if (this._postgresConnection) await this._postgresConnection.close();
 	}
 }

@@ -1,4 +1,4 @@
-import {Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn} from 'typeorm';
+import {BaseEntity, Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn} from 'typeorm';
 
 /* https://stackoverflow.com/a/195556/7704062
 	The basic actors of an RBAC are:
@@ -20,20 +20,16 @@ interface IResource {
 }
 
 @Entity()
-class Permission {
+class Permission extends BaseEntity {
 	@PrimaryGeneratedColumn()
 	id: number;
 
 	@Column('string')
 	name: string;
-
-	constructor(name: string) {
-		this.name = name;
-	}
 }
 
 @Entity()
-class Role {
+class Role extends BaseEntity {
 	@PrimaryGeneratedColumn()
 	id: number;
 
@@ -46,7 +42,7 @@ class Role {
 }
 
 @Entity()
-class User implements ILoginable, IResource {
+class User extends BaseEntity implements ILoginable, IResource {
 	@PrimaryGeneratedColumn()
 	id: number;
 
@@ -73,7 +69,7 @@ class User implements ILoginable, IResource {
 }
 
 @Entity()
-class Account implements IResource {
+class Account extends BaseEntity implements IResource {
 	@PrimaryGeneratedColumn()
 	id: number;
 
