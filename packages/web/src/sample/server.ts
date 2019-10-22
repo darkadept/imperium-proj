@@ -1,7 +1,7 @@
 import debug from 'debug';
-import Sample from './Sample.graphqls';
+import Sample from './server/graphql/Sample.graphqls';
 
-const d = debug('app.sample.graphql');
+const d = debug('app.sample');
 
 let a = 0;
 
