@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require('path');
+
 module.exports = {
 	development: {
 		imperiumDevelopmentAliases: false,
@@ -9,5 +12,8 @@ module.exports = {
 		client: {
 			devtool: 'source-map',
 		},
+	},
+	web: {
+		template: path.resolve(process.cwd(), './src/core/index.html'),
 	},
 };
