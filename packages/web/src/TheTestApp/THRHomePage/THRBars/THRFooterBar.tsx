@@ -1,17 +1,19 @@
 import debug from 'debug';
 import React from 'react';
+import {useHistory} from 'react-router-dom';
 import {List, Grid, Icon} from 'semantic-ui-react';
-import {Map, GoogleApiWrapper, Marker} from 'google-maps-react';
+// import {Map, GoogleApiWrapper, Marker} from 'google-maps-react';
 
 const d = debug('app.web.ThrHomePage.ThrFooterBar');
 
 interface Props {
-	google: {maps: any};
-	loaded: boolean;
+	// google: {maps: any};
+	// loaded: boolean;
 	screenSize: string;
 }
 
-function THRFooterBar(props: Props) {
+export default function THRFooterBar(props: Props) {
+	const history = useHistory();
 	const paddingBottom = props.screenSize === 'mobile' ? {paddingBottom: '30px'} : {};
 	return (
 		<Grid
@@ -54,7 +56,9 @@ function THRFooterBar(props: Props) {
 						<List.Item>
 							<List.Content>
 								<List.Header>EMAIL</List.Header>
-								<List.Description as="a">Steinbach</List.Description>
+								<List.Description as="a" onClick={() => history.push('/thr/contact')}>
+									Steinbach
+								</List.Description>
 								<List.Description as="a">Winkler</List.Description>
 								<List.Description as="a">Winnipeg</List.Description>
 								<List.Description as="a">Mississauga</List.Description>
@@ -63,14 +67,14 @@ function THRFooterBar(props: Props) {
 					</List>
 				</Grid.Column>
 				<Grid.Column style={{minHeight: '300px'}}>
-					<Map
+					{/* <Map
 						google={props.google}
 						zoom={13}
 						style={{color: 'white', width: '90%', height: '100%', border: '1px solid white'}}
 						initialCenter={{lat: 49.54, lng: -96.7}}
 					>
-						<Marker position={{lat: 49.5393207, lng: -96.7002327}} />
-					</Map>
+						<Marker position={{lat: 49.5393207, lng: -96.6999}} />
+					</Map> */}
 				</Grid.Column>
 			</Grid.Row>
 
@@ -86,6 +90,6 @@ function THRFooterBar(props: Props) {
 	);
 }
 
-export default GoogleApiWrapper({
-	apiKey: '111',
-})(props => THRFooterBar(props));
+// export default GoogleApiWrapper({
+// 	apiKey: process.env.APIKEY,
+// })(props => THRFooterBar(props));

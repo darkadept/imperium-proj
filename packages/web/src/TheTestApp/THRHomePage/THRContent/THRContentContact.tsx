@@ -25,7 +25,7 @@ export default function ThrContentContact(props: Props) {
 							onClick={() => d('go to Location...')}
 							style={{width: '100%', height: 'auto', cursor: 'pointer'}}
 							alt="steinbach"
-							src="https://makingyourmilescount.com/wp-content/uploads/2015/05/Steinbach-Office-Updated-300x169.jpg"
+							src="https://makingyourmilescount.com/wp-content/uploads/2015/05/Steinbach-Office-Updated.jpg"
 						/>
 					</Grid.Column>
 				)}
@@ -45,7 +45,7 @@ export default function ThrContentContact(props: Props) {
 							onClick={() => d('go to Location...')}
 							style={{width: '100%', height: 'auto', cursor: 'pointer'}}
 							alt="mississauga"
-							src="https://makingyourmilescount.com/wp-content/uploads/2017/01/Tor-H-IMG_1198-two-300x169.jpg"
+							src="https://makingyourmilescount.com/wp-content/uploads/2017/01/Tor-H-IMG_1198-two-1024x576.jpg"
 						/>
 					</Grid.Column>
 				)}
@@ -65,7 +65,7 @@ export default function ThrContentContact(props: Props) {
 							onClick={() => d('go to Location...')}
 							style={{width: '100%', height: 'auto', cursor: 'pointer'}}
 							alt="winkler"
-							src="https://makingyourmilescount.com/wp-content/uploads/2015/05/43242-e1488231167465-300x169.jpg"
+							src="https://makingyourmilescount.com/wp-content/uploads/2015/05/43242-1024x768.jpg"
 						/>
 					</Grid.Column>
 				)}
@@ -85,7 +85,7 @@ export default function ThrContentContact(props: Props) {
 							onClick={() => d('go to Location...')}
 							style={{width: '100%', height: 'auto', cursor: 'pointer'}}
 							alt="winnipeg"
-							src="https://makingyourmilescount.com/wp-content/uploads/2015/05/Winnipeg-Office-Resized-300x169.jpg"
+							src="https://makingyourmilescount.com/wp-content/uploads/2015/05/Winnipeg-Office-Resized-1024x576.jpg"
 						/>
 					</Grid.Column>
 				)}

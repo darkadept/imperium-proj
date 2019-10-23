@@ -1,6 +1,7 @@
 import debug from 'debug';
 import React from 'react';
 import {Grid} from 'semantic-ui-react';
+import {useHistory} from 'react-router-dom';
 
 const d = debug('app.web.ThrHomePage.ThrContentHome');
 const GridRowStyles = {
@@ -14,7 +15,8 @@ interface Props {
 }
 
 export default function ThrContentHome(props: Props) {
-	const {screenSize} = props;
+	const history = useHistory();
+	const isMobile = props.screenSize === 'mobile';
 
 	return (
 		<Grid centered columns="equal" stackable style={{paddingBottom: '66px'}}>
@@ -23,8 +25,9 @@ export default function ThrContentHome(props: Props) {
 					<Grid columns="equal">
 						<Grid.Row>
 							<Grid.Column>
+								{/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
 								<img
-									onClick={() => d('go to the Contact page...')}
+									onClick={() => history.push('/thr/contact')}
 									style={{cursor: 'pointer'}}
 									alt="locations"
 									src="https://makingyourmilescount.com/wp-content/uploads/2018/01/Slide-1.jpg"
@@ -42,7 +45,7 @@ export default function ThrContentHome(props: Props) {
 			</Grid.Row>
 
 			<Grid.Row style={GridRowStyles}>
-				{screenSize === 'mobile' ? null : (
+				{isMobile ? null : (
 					<Grid.Column>
 						<img
 							style={{maxWidth: '100%', height: 'auto'}}
@@ -60,19 +63,30 @@ export default function ThrContentHome(props: Props) {
 			</Grid.Row>
 
 			<Grid.Row style={GridRowStyles}>
-				{screenSize === 'mobile' ? null : (
+				{isMobile ? null : (
 					<Grid.Column textAlign="center">
+						{/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
 						<img
 							style={{maxWidth: '100%', height: 'auto', cursor: 'pointer'}}
-							onClick={() => d('go to the books page...')}
+							onClick={() => history.push('/thr/books')}
 							alt="COMMITTED TO HELPING YOU MAKE YOUR MILES COUNT"
 							src="https://makingyourmilescount.com/wp-content/uploads/2015/05/CHOOSING-A-TRUCKING-COMPANY-Low-Resolution-Copy-214x300.jpg"
 						/>
 					</Grid.Column>
 				)}
-				<Grid.Column style={{minHeight: '200px', paddingTop: '30px'}} textAlign="center" stretched>
-					<span style={{color: 'rgb(189, 197, 73)', fontSize: '2em'}}>Get the latest book by</span>
-					<span style={{color: 'rgb(217, 128, 48)', fontSize: '3em'}}>Robert Scheper</span>
+				<Grid.Column
+					style={{minHeight: '200px', paddingTop: '30px'}}
+					textAlign="center"
+					stretched
+					onClick={() => {
+						if (isMobile) {
+							window.scrollTo(0, 0);
+							history.push('/thr/books');
+						}
+					}}
+				>
+					<p style={{color: 'rgb(189, 197, 73)', fontSize: '2em'}}>Get the latest book by</p>
+					<p style={{color: 'rgb(217, 128, 48)', fontSize: '3em'}}>Robert Scheper</p>
 				</Grid.Column>
 			</Grid.Row>
 		</Grid>
