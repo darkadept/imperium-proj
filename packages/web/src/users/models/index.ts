@@ -1,3 +1,4 @@
+// eslint-disable no-unused-vars
 import {BaseEntity, Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn} from 'typeorm';
 
 /* https://stackoverflow.com/a/195556/7704062
@@ -58,14 +59,30 @@ class User extends BaseEntity implements ILoginable, IResource {
 	@Column('varchar')
 	passwordHash: string;
 
-	@Column(type => Permission)
+	@ManyToMany(type => Permission)
+	@JoinTable()
 	permissions: Permission[];
 
-	@Column(type => Role)
+	@ManyToMany(type => Role)
+	@JoinTable()
 	roles: Role[];
 
 	@ManyToMany(type => Account, account => account.members)
-	accounts?: Account[];
+	accounts: Account[];
+
+	constructor(user?: User) {
+		super();
+		if (user) {
+			const {firstName, lastName, email, passwordHash, permissions = [], roles = [], accounts = []} = user;
+			this.firstName = firstName;
+			this.lastName = lastName;
+			this.email = email;
+			this.passwordHash = passwordHash;
+			this.permissions = permissions;
+			this.roles = roles;
+			this.accounts = accounts;
+		}
+	}
 }
 
 @Entity()

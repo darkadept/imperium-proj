@@ -1,0 +1,10 @@
+query {
+	getUsers {
+		id
+		firstName
+		lastName
+		permissions { id name }
+		roles { id name }
+		accounts { id name number }
+	}
+}

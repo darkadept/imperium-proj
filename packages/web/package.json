@@ -24,7 +24,6 @@
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.0",
-    "@types/node": "^12.11.2",
     "@imperium/auth": "^4.0.0-alpha.7",
     "@imperium/core": "^4.0.0-alpha.7",
     "@imperium/graphql": "^4.0.0-alpha.8",
@@ -32,6 +31,7 @@
     "@imperium/user": "^4.0.0-alpha.7",
     "@loadable/component": "^5.10.3",
     "@thx/extras": "^10.4.0",
+    "@types/node": "^12.11.2",
     "apollo-client": "^2.6.4",
     "apollo-utilities": "^1.3.2",
     "debug": "^4.1.1",
@@ -39,11 +39,12 @@
     "graphql": "^14.5.8",
     "lodash": "^4.17.15",
     "pg": "^7.12.1",
-    "react-bootstrap": "^1.0.0-beta.14",
-    "typeorm": "^0.2.19",
     "react": "^16.10.2",
+    "react-bootstrap": "^1.0.0-beta.14",
     "react-dom": "^16.10.2",
-    "react-router-dom": "^5.1.2"
+    "react-router-dom": "^5.1.2",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.19"
   },
   "devDependencies": {
     "@imperium/dev": "^4.0.0-alpha.7",
