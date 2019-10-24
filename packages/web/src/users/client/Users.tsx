@@ -16,26 +16,6 @@ export default function Users(props) {
 								<Link to={`/user/${u.id}`}>
 									{u.firstName} {u.lastName}
 								</Link>
-
-								<h4>
-									Permissions <small>required to access this resource</small>
-								</h4>
-								<ul>
-									{u.permissions.map(p => (
-										<Link as="li" key={p.id} to={`/permission/${p.id}`}>
-											{p.name}
-										</Link>
-									)) || 'No Permissions'}
-								</ul>
-
-								<h4>Roles</h4>
-								<ul>
-									{u.roles.map(r => (
-										<Link as="li" key={r.id} to={`/role/${r.id}`}>
-											{r.name}
-										</Link>
-									)) || 'No Roles.'}
-								</ul>
 							</li>
 					  ))
 					: 'No Users.'}

@@ -1,60 +1,42 @@
-// eslint-disable no-unused-vars
+/* eslint-disable no-unused-vars */
 import {BaseEntity, Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn} from 'typeorm';
 
-/* https://stackoverflow.com/a/195556/7704062
-	The basic actors of an RBAC are:
-		Resources.
-		Permissions.
-		Users.
-		Roles (i.e. Groups).
-	Resources <- require -> (one or many) Permissions.
-	Roles <- are collections of -> (one or many) Permissions.
-	Users <- can have -> (one or many) Roles.
-*/
-
-interface ILoginable {
-	email: string;
-	passwordHash: string;
-}
-interface IResource {
-	permissions: Permission[];
+interface TodoInput {
+	title?: string;
+	completed?: boolean;
 }
 
 @Entity()
-class Permission extends BaseEntity {
+class Todo extends BaseEntity {
 	@PrimaryGeneratedColumn()
+	// @ts-ignore
 	id: number;
 
 	@Column('varchar')
-	name: string;
-}
+	title: string;
 
-@Entity()
-class Role extends BaseEntity {
-	@PrimaryGeneratedColumn()
-	id: number;
+	@Column('boolean')
+	completed: boolean;
 
-	@Column('varchar')
-	name: string;
-
-	@ManyToMany(type => Permission)
-	@JoinTable()
-	permissions: Permission[];
+	constructor(todo: TodoInput = {}) {
+		super();
+		const {title, completed} = todo;
+		this.title = title || 'New Todo';
+		this.completed = completed || false;
+	}
 }
 
 interface UserInput {
 	firstName: string;
 	lastName: string;
-	email: string;
-	passwordHash: string;
-	permissions: Permission[];
-	roles: Role[];
-	accounts: Account[];
+	passwordHash?: string;
+	todos?: Todo[];
 }
 
 @Entity()
-class User extends BaseEntity implements ILoginable, IResource {
+class User extends BaseEntity {
 	@PrimaryGeneratedColumn()
+	// @ts-ignore
 	id: number;
 
 	@Column('varchar')
@@ -63,54 +45,21 @@ class User extends BaseEntity implements ILoginable, IResource {
 	@Column('varchar')
 	lastName: string;
 
-	@Column('varchar')
-	email: string;
-
 	@Column('varchar', {select: false})
-	passwordHash: string;
+	passwordHash?: string;
 
-	@ManyToMany(type => Permission)
+	@ManyToMany(type => Todo)
 	@JoinTable()
-	permissions: Permission[];
+	todos: Todo[];
 
-	@ManyToMany(type => Role)
-	@JoinTable()
-	roles: Role[];
-
-	@ManyToMany(type => Account, account => account.members)
-	accounts: Account[];
-
-	constructor(user?: UserInput) {
+	constructor(user: UserInput) {
 		super();
-		if (user) {
-			const {firstName, lastName, email, passwordHash, permissions = [], roles = [], accounts = []} = user;
-			this.firstName = firstName;
-			this.lastName = lastName;
-			this.email = email;
-			this.passwordHash = passwordHash;
-			this.permissions = permissions;
-			this.roles = roles;
-			this.accounts = accounts;
-		}
+		const {firstName, lastName, passwordHash, todos} = user;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.passwordHash = passwordHash;
+		this.todos = todos || [];
 	}
 }
 
-@Entity()
-class Account extends BaseEntity implements IResource {
-	@PrimaryGeneratedColumn()
-	id: number;
-
-	@Column('integer')
-	number: number;
-
-	@Column('varchar')
-	name: string;
-
-	@Column(type => Permission)
-	permissions: Permission[];
-
-	@ManyToMany(type => User, member => member.accounts)
-	members: User[];
-}
-
-export {Permission, User, Account, Role, IResource, ILoginable};
+export {Todo, User};

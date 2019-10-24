@@ -28,7 +28,7 @@ export default function Users() {
 		resolvers() {
 			return {
 				Query: {
-					getUsers: () => User.find({relations: ['permissions', 'roles']}),
+					getUsers: () => User.find(),
 				},
 			};
 		},
