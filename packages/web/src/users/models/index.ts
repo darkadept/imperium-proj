@@ -42,6 +42,16 @@ class Role extends BaseEntity {
 	permissions: Permission[];
 }
 
+interface UserInput {
+	firstName: string;
+	lastName: string;
+	email: string;
+	passwordHash: string;
+	permissions: Permission[];
+	roles: Role[];
+	accounts: Account[];
+}
+
 @Entity()
 class User extends BaseEntity implements ILoginable, IResource {
 	@PrimaryGeneratedColumn()
@@ -56,7 +66,7 @@ class User extends BaseEntity implements ILoginable, IResource {
 	@Column('varchar')
 	email: string;
 
-	@Column('varchar')
+	@Column('varchar', {select: false})
 	passwordHash: string;
 
 	@ManyToMany(type => Permission)
@@ -70,7 +80,7 @@ class User extends BaseEntity implements ILoginable, IResource {
 	@ManyToMany(type => Account, account => account.members)
 	accounts: Account[];
 
-	constructor(user?: User) {
+	constructor(user?: UserInput) {
 		super();
 		if (user) {
 			const {firstName, lastName, email, passwordHash, permissions = [], roles = [], accounts = []} = user;
