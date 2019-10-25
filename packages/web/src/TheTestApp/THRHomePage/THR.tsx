@@ -11,6 +11,7 @@ import THRContentResearch from './THRContent/THRContentResearch';
 import THRContentServices from './THRContent/THRContentServices';
 import ThrContentArticles from './THRContent/THRContentArticles';
 import ThrContentEvents from './THRContent/THRContentEvents';
+import ThrContentPodcasts from './THRContent/THRContentPodcasts';
 
 const d = debug('app.web.ThrHomePage.THR');
 
@@ -63,13 +64,16 @@ export default function THR() {
 				comp = <THRContentBooks />;
 				break;
 			case 'articles':
-				comp = <ThrContentArticles />
+				comp = <ThrContentArticles />;
 				break;
 			case 'research':
 				comp = <THRContentResearch />;
 				break;
 			case 'services':
 				comp = <THRContentServices />;
+				break;
+			case 'podcasts':
+				comp = <ThrContentPodcasts />;
 				break;
 			case 'events':
 				comp = <ThrContentEvents />;

@@ -1,6 +1,6 @@
 import TestPageOne from './TestPageOne/TestPageOne';
 import HomePage from './THRHomePage';
-import Postlist from './WebpackTest/postlist';
+import Postlist from './WordpressTest/postlist';
 
 export default [
 	{
