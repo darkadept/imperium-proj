@@ -1,8 +1,15 @@
 import debug from 'debug';
-import ImperiumClient from '@imperium/core/client';
 import {RouteDirector} from '@imperium/router';
-import clientModules from './clientModules';
+import ImperiumClient from '@imperium/core/client';
 import DefaultComponent from '../sample/client/components/DefaultComponent';
+import HeaderBar from '../THR4Layout/HeaderBar';
+import FooterBar from '../THR4Layout/FooterBar';
+import SideMenu from '../THR4Layout/SideMenu';
+import MenuBar from '../THR4Layout/MenuBar';
+import clientModules from './clientModules';
+import 'semantic-ui-css/semantic.min.css';
+import THR4Layout from '../THR4Layout';
+import '../THR4Layout/styles.css';
 
 const d = debug('app.client');
 
@@ -11,7 +18,12 @@ const client = new ImperiumClient({
 	rootComponent: RouteDirector,
 	rootProps: {
 		routeDefaults: {
-			// layout: ContainerLayout, // TODO this will be re-enabled in the future
+			layout: THR4Layout,
+			menu: HeaderBar,
+			statusbar: MenuBar,
+			sidebar: SideMenu,
+			content: DefaultComponent,
+			footer: FooterBar,
 			redirect: false,
 		},
 		rootRoute: {path: '/', content: DefaultComponent, exact: true},
