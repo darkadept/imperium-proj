@@ -5,7 +5,8 @@ query($id: Int) {
 		lastName
 		todos {
 			id
-			name
+			title
+			completed
 		}
 	}
 }

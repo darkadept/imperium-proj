@@ -1,6 +1,6 @@
 import React from 'react';
 import {useQuery} from '@apollo/react-hooks';
-import {Todo as TodoClass} from '../../models';
+import {Todo as TodoClass} from '../../server/models';
 import TodoInput from '../components/TodoInput';
 // @ts-ignore
 import getTodos from '../graphql/getTodos.graphql';
