@@ -1,9 +1,9 @@
 import React from 'react';
-import {Link, RouteComponentProps} from 'react-router-dom';
+import {RouteComponentProps} from 'react-router-dom';
 import {useQuery} from '@apollo/react-hooks';
-import {User} from '../../server/models';
 import TodoInput from '../components/TodoInput';
 import getUser from '../graphql/getUser.graphql';
+import {User} from '../types';
 
 export default function Users(props: RouteComponentProps<{id: number}>) {
 	const userId = props.match.params.id;

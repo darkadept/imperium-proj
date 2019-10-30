@@ -1,8 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {useQuery} from '@apollo/react-hooks';
-import {User} from '../../server/models';
-// @ts-ignore
+import {User} from '../types';
 import getUsers from '../graphql/getUsers.graphql';
 
 export default function Users() {

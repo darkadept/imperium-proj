@@ -1,12 +1,11 @@
 import React from 'react';
 import {useQuery} from '@apollo/react-hooks';
-import {Todo as TodoClass} from '../../server/models';
+import {Todo} from '../types';
 import TodoInput from '../components/TodoInput';
-// @ts-ignore
 import getTodos from '../graphql/getTodos.graphql';
 
 export default function Todos() {
-	const {loading, data} = useQuery<{getTodos: TodoClass[]}>(getTodos);
+	const {loading, data} = useQuery<{getTodos: Todo[]}>(getTodos);
 	return (
 		<div>
 			<h3>Todos</h3>
