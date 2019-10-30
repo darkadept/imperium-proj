@@ -12,9 +12,9 @@ export default function DefaultComponent() {
 				<li>
 					<Link to="/sample">Route to Sample Route</Link>
 				</li>
-				<li>
+				{/* <li>
 					<Link to="/graphqltest">Route to Graphql Test</Link>
-				</li>
+				</li> */}
 			</ul>
 		</>
 	);

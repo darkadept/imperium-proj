@@ -22,7 +22,6 @@ const client = new ImperiumClient({
 			menu: HeaderBar,
 			statusbar: MenuBar,
 			sidebar: SideMenu,
-			content: DefaultComponent,
 			footer: FooterBar,
 			redirect: false,
 		},

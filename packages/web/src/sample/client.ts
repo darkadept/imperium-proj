@@ -19,5 +19,21 @@ export default function() {
 				content: GraphqlTest,
 			},
 		],
+		statusbar: [
+			{
+				component: () => 'Hello World',
+				permissions: ['administrator', 'workstation'],
+				priority: 2,
+				contextType: ['user', 'client'],
+			},
+		],
+		menu: [
+			{
+				component: () => 'Hello World',
+				permissions: ['administrator', 'workstation'],
+				priority: 2,
+				contextType: ['user', 'client'],
+			},
+		],
 	};
 }

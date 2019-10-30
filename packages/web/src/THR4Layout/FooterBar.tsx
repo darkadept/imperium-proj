@@ -1,10 +1,18 @@
 import debug from 'debug';
-import React from 'react';
+import get from 'lodash/get';
 import {Menu} from 'semantic-ui-react';
+import React, {useContext} from 'react';
+import {MenuContext} from './THR4Layout';
 
-const d = debug('app.THR4Layout.HeaderBar');
+const d = debug('app.THR4Layout.FooterBar');
 
-export default function HeaderBar() {
+export default function FooterBar() {
+	const [state] = useContext(MenuContext);
+	const profile = get(state, 'currentUser.profile.firstName', '').concat(
+		' ',
+		get(state, 'currentUser.profile.lastName', ''),
+	);
+
 	return (
 		<Menu inverted borderless style={{borderRadius: 0, margin: 0}}>
 			<Menu.Item name="home" style={{color: 'rgb(217, 128, 48)'}}>
@@ -12,7 +20,7 @@ export default function HeaderBar() {
 			</Menu.Item>
 			<Menu.Menu position="right">
 				<Menu.Item name="logout" onClick={() => {}}>
-					Logged in as: Jonathan Spomer
+					{profile ? `Logged in as: ${profile}` : 'You are not logged in'}
 				</Menu.Item>
 			</Menu.Menu>
 		</Menu>
