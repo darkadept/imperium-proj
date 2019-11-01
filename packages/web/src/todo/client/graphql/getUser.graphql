@@ -9,4 +9,12 @@ query($id: Int) {
 			completed
 		}
 	}
+	getTodoHistory(userId: $id) {
+		id
+		originalId
+		makeActionAt
+		action
+		title
+		completed
+	}
 }

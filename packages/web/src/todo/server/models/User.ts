@@ -1,7 +1,16 @@
-import {BaseEntity, Column, Entity, JoinTable, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
 import debug from 'debug';
-import OrderedDataLoader from '../OrderedDataLoader';
-import Todo from './Todo';
+import {
+	BaseEntity,
+	Column,
+	CreateDateColumn,
+	Entity,
+	EventSubscriber,
+	OneToMany,
+	PrimaryGeneratedColumn,
+} from 'typeorm';
+import {HistoryActionColumn, HistoryActionType, HistoryEntityInterface, HistorySubscriber} from 'typeorm-revisions';
+import OrderedDataLoader from '../../lib/OrderedDataLoader';
+import {Todo} from './Todo';
 
 const d = debug('app.todo.server.models.User');
 
@@ -15,19 +24,19 @@ interface UserInput {
 @Entity()
 class User extends BaseEntity {
 	@PrimaryGeneratedColumn()
-	id: number;
+	id!: number;
 
 	@Column('varchar')
-	firstName: string;
+	firstName!: string;
 
 	@Column('varchar')
-	lastName: string;
+	lastName!: string;
 
 	@Column('varchar', {select: false})
 	passwordHash?: string;
 
 	@OneToMany(type => Todo, todo => todo.user)
-	todos: Todo[]; // TypeORM initialises this.
+	todos!: Todo[]; // TypeORM initialises this.
 
 	static createLoader() {
 		return new OrderedDataLoader<number, User>(keys => this.findByIds(keys));
@@ -41,14 +50,39 @@ class User extends BaseEntity {
 		return context.models.User.load(id);
 	}
 
-	constructor(user: UserInput = {firstName: '', lastName: ''}) {
+	constructor(user?: UserInput) {
 		super();
-		const {firstName, lastName, passwordHash, todos} = user;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.passwordHash = passwordHash;
-		this.todos = todos;
+		if (user) {
+			const {firstName, lastName, passwordHash, todos} = user;
+			this.firstName = firstName;
+			this.lastName = lastName;
+			this.passwordHash = passwordHash;
+			this.todos = todos;
+		}
 	}
 }
 
-export default User;
+@Entity()
+class UserHistory extends User implements HistoryEntityInterface {
+	@Column('integer')
+	public originalID!: number;
+
+	@CreateDateColumn()
+	public makeActionAt!: Date;
+
+	@HistoryActionColumn()
+	public action!: HistoryActionType;
+}
+
+@EventSubscriber()
+class UserHistorySubscriber extends HistorySubscriber<User, UserHistory> {
+	public get entity() {
+		return User;
+	}
+
+	public get historyEntity() {
+		return UserHistory;
+	}
+}
+
+export {User, UserHistory, UserHistorySubscriber};

@@ -1,6 +1,6 @@
 import debug from 'debug';
 import faker from 'faker';
-import {User, Todo} from './server/models';
+import {User, Todo, UserHistory, TodoHistory, UserHistorySubscriber, TodoHistorySubscriber} from './server/models';
 import TodoSchema from './server/graphql/Todo.graphqls';
 
 const d = debug('app.todo.server');
@@ -9,22 +9,19 @@ export default function Users() {
 	return {
 		name: 'Users',
 		async startup() {
-			// await new User({
-			// 	firstName: faker.name.firstName(),
-			// 	lastName: faker.name.lastName(),
-			// 	passwordHash: faker.random.alphaNumeric(),
-			// 	todos: [
-			// 		await new Todo({
-			// 			title: faker.lorem.words(),
-			// 		}).save(),
-			// 		await new Todo({
-			// 			title: faker.lorem.words(),
-			// 		}).save(),
-			// 		await new Todo({
-			// 			title: faker.lorem.words(),
-			// 		}).save(),
-			// 	],
-			// }).save();
+			await new User({
+				firstName: faker.name.firstName(),
+				lastName: faker.name.lastName(),
+				passwordHash: faker.lorem
+					.words()
+					.split(' ')
+					.join(''),
+				todos: [
+					await new Todo({title: faker.lorem.words()}).save(),
+					await new Todo({title: faker.lorem.words()}).save(),
+					await new Todo({title: faker.lorem.words()}).save(),
+				],
+			}).save();
 		},
 		schema: [TodoSchema],
 		resolvers() {
@@ -35,30 +32,28 @@ export default function Users() {
 				Query: {
 					getUsers: (obj, args, context) => User.get({}, context),
 					getUser: (obj, {id}, context) => User.getOne(id, context),
+					getTodoHistory: (obj, {userId}) => TodoHistory.find({}),
 				},
 				Mutation: {
-					async editTodo(obj, {id, title, completed}, context) {
-						await Todo.createQueryBuilder()
-							.update()
-							.set({title, completed})
-							.where('todo.id = :id', {id})
-							.execute();
-						// via magic, this updates the cache. nothing more is needed on the client.
-						return {id, title, completed};
-					},
+					editTodo: async (obj, {id, title, completed}) => Todo.getRepository().save({id, title, completed}),
 				},
 			};
 		},
 		// will be changed to context
+		// contextModels maybe?
 		models() {
 			return {
 				User: User.createLoader(),
 				Todo: Todo.createLoader(),
+				TodoHistory: TodoHistory.createLoader(),
 			};
 		},
 		// TypeORM specific (custom)
 		entities() {
-			return [User, Todo];
+			return [User, UserHistory, Todo, TodoHistory];
+		},
+		subscribers() {
+			return [UserHistorySubscriber, TodoHistorySubscriber];
 		},
 	};
 }

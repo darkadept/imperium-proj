@@ -17,6 +17,12 @@ export default class Connectors implements ImperiumConnectors {
 			}
 			return memo;
 		}, []);
+		const subscribers = server.modules.reduce((memo, module) => {
+			if (module.subscribers && isFunction(module.subscribers)) {
+				return [...memo, ...module.subscribers()];
+			}
+			return memo;
+		}, []);
 
 		this._postgresConnection = await createConnection({
 			type: 'postgres',
@@ -26,6 +32,7 @@ export default class Connectors implements ImperiumConnectors {
 			port: (process.env.PG_PORT as unknown) as number,
 			synchronize: true, // Development ONLY
 			entities,
+			subscribers,
 		});
 		return {pg: this._postgresConnection};
 	}

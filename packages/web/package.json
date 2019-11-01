@@ -45,7 +45,8 @@
     "react-dom": "^16.10.2",
     "react-router-dom": "^5.1.2",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.2.19"
+    "typeorm": "^0.2.19",
+    "typeorm-revisions": "^0.0.5"
   },
   "devDependencies": {
     "@imperium/dev": "^4.0.0-alpha.10",

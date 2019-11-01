@@ -1,34 +1,50 @@
 import debug from 'debug';
-import {BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
-import OrderedDataLoader from '../OrderedDataLoader';
-import User from './User';
+import {
+	BaseEntity,
+	Column,
+	CreateDateColumn,
+	Entity,
+	EventSubscriber,
+	ManyToOne,
+	PrimaryGeneratedColumn,
+} from 'typeorm';
+import {
+	HistoryActionColumn,
+	HistoryActionType,
+	HistoryEntityInterface,
+	HistorySubscriber,
+} from 'typeorm-revisions';
+import OrderedDataLoader from '../../lib/OrderedDataLoader';
+import {User} from './User';
 
 const d = debug('app.todo.server.models.Todo');
 
 interface TodoInput {
 	title?: string;
 	completed?: boolean;
+	user?: User;
 }
 
 @Entity()
 class Todo extends BaseEntity {
 	@PrimaryGeneratedColumn()
-	id: number;
+	id!: number;
 
 	@ManyToOne(type => User, user => user.todos)
 	user: User;
 
 	@Column('varchar')
-	title: string;
+	title!: string;
 
 	@Column('boolean')
-	completed: boolean;
+	completed!: boolean;
 
 	static createLoader() {
 		return new OrderedDataLoader(keys => this.findByIds(keys));
 	}
 
 	static async getByUser(user) {
+		d('get todo by user', user);
 		// cannot do this with data loader because we dont have the id.
 		return this.find({where: {user}, order: {id: 'ASC'}});
 	}
@@ -45,4 +61,39 @@ class Todo extends BaseEntity {
 	}
 }
 
-export default Todo;
+@Entity()
+class TodoHistory extends Todo implements HistoryEntityInterface {
+	@Column('integer')
+	public originalID!: number;
+
+	@CreateDateColumn()
+	public makeActionAt!: Date;
+
+	@HistoryActionColumn()
+	public action!: HistoryActionType;
+
+	static createLoader() {
+		return new OrderedDataLoader(keys => this.findByIds(keys));
+	}
+
+	static async getByUser(user) {
+		// cannot do this with data loader because we dont have the id.
+		return this.find({where: {user}, order: {id: 'ASC'}});
+	}
+
+	static async getOne(id, context) {
+		return context.models.Todo.load(id);
+	}
+}
+
+@EventSubscriber()
+class TodoHistorySubscriber extends HistorySubscriber<Todo, TodoHistory> {
+	get entity() {
+		return Todo;
+	}
+	get historyEntity() {
+		return TodoHistory;
+	}
+}
+
+export {Todo, TodoHistory, TodoHistorySubscriber};
