@@ -1,10 +1,9 @@
-import PropTypes from 'prop-types';
+import debug from 'debug';
 import {Segment} from 'semantic-ui-react';
 import React, {useState, createContext} from 'react';
 import UserMenu from './UserMenu';
 // @ts-ignore
 import styles from './styles.css';
-import debug from 'debug';
 
 const d = debug('app.THR4Layout.THR4Layout');
 
@@ -21,16 +20,15 @@ interface Props {
 interface MenuState {
 	currentUser?: {profile: {firstName: string; lastName: string; id: string}};
 	showStatusBar: boolean;
+	activeItem: string;
 }
 // @ts-ignore
-export const MenuContext = createContext<[MenuState, () => {}]>([{showStatusBar: true}, () => {}]);
+export const MenuContext = createContext<[MenuState, () => {}]>([{}, () => {}]);
 
 export default function THR4Layout(props: Props) {
 	const [menuState, setMenuState] = useState({
-		currentUser: {profile: {firstName: 'Jonathan', lastName: 'Spomer', id: '1234'}},
 		showStatusBar: true,
 	});
-	d(props.route);
 
 	const menu = props.route.menu ? (
 		<props.route.menu {...props} userMenu={<UserMenu MenuContext={MenuContext} />} />
@@ -64,13 +62,3 @@ export default function THR4Layout(props: Props) {
 		</div>
 	);
 }
-
-THR4Layout.propTypes = {
-	route: PropTypes.shape({
-		statusbar: PropTypes.func,
-		sidebar: PropTypes.func,
-		content: PropTypes.func,
-		menu: PropTypes.func,
-		footer: PropTypes.func,
-	}),
-};

@@ -7,14 +7,14 @@ const d = debug('app.sample.DefaultComponent');
 export default function DefaultComponent() {
 	return (
 		<>
-			<h1>Home</h1>
+			<h1>Login</h1>
 			<ul>
 				<li>
-					<Link to="/sample">Route to Sample Route</Link>
+					<Link to="/user">Login (Route to User)</Link>
 				</li>
-				{/* <li>
-					<Link to="/graphqltest">Route to Graphql Test</Link>
-				</li> */}
+				<li>
+					<Link to="/client">Login (Route to Client)</Link>
+				</li>
 			</ul>
 		</>
 	);

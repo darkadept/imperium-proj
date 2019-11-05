@@ -14,7 +14,7 @@ export default function FooterBar() {
 	);
 
 	return (
-		<Menu inverted borderless style={{borderRadius: 0, margin: 0}}>
+		<Menu inverted borderless style={{borderRadius: 0, margin: 0, backgroundColor: 'rgb(45, 45, 45)'}}>
 			<Menu.Item name="home" style={{color: 'rgb(217, 128, 48)'}}>
 				Footer Bar
 			</Menu.Item>

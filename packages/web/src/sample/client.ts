@@ -35,5 +35,7 @@ export default function() {
 				contextType: ['user', 'client'],
 			},
 		],
+		sideMenu: [{}],
+		footer: [{}],
 	};
 }
