@@ -1,6 +1,5 @@
 import debug from 'debug';
-import get from 'lodash/get';
-import {List, Menu} from 'semantic-ui-react';
+import {Menu} from 'semantic-ui-react';
 import React, {Context, useContext} from 'react';
 
 const d = debug('app.THR4Layout.UserMenu');
@@ -13,7 +12,10 @@ export default function UserMenu(props: Props) {
 	const [menuState, setMenuState] = useContext(props.MenuContext);
 
 	const handleClick = ({first, last, id}) => {
-		setMenuState(prevState => ({...prevState, currentUser: {profile: {firstName: first, lastName: last, id}}}));
+		setMenuState(prevState => ({
+			...prevState,
+			currentUser: {profile: {firstName: first, lastName: last, id}},
+		}));
 	};
 
 	return (

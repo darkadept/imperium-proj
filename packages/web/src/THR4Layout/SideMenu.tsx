@@ -94,7 +94,7 @@ export default function SideMenu(props: Props): JSX.Element {
 		},
 		{
 			component: propss => (
-				<Dropdown key="dropdownMenu" item icon="wrench" text="Dropdown">
+				<Dropdown key="dropdownMenu" item icon="sidebar" text="Options">
 					<Dropdown.Menu>
 						<Dropdown.Item onClick={() => propss.history.push('/user')}>User</Dropdown.Item>
 						<Dropdown.Item onClick={() => propss.history.push('/client')}>Client</Dropdown.Item>
@@ -136,26 +136,42 @@ export default function SideMenu(props: Props): JSX.Element {
 	if (menuItems.length < 1) return <></>;
 	const sortedMenuItems = sortBy(menuItems, 'priority');
 
-	return (
-		<Menu
-			vertical
-			style={{borderRadius: 0}}
-			inverted
-			items={sortedMenuItems.map((item, index) => {
-				let active = false;
-				if (item.selectedRoute) {
-					if (typeof item.selectedRoute === 'string') active = item.selectedRoute === props.route.path;
-					else if (typeof item.selectedRoute === 'object') active = item.selectedRoute.includes(props.route.path);
-				}
-				if (item.isVisible(props.route.path)) {
-					return (
-						<Menu.Item key={index.toString()} name={index.toString()} fitted as={Item} active={active}>
-							<item.component {...props} />
-						</Menu.Item>
-					);
-				}
-				return null;
-			})}
-		/>
-	);
+	return sortedMenuItems.map((item, index) => {
+		let active = false;
+		if (item.selectedRoute) {
+			if (typeof item.selectedRoute === 'string') active = item.selectedRoute === props.route.path;
+			else if (typeof item.selectedRoute === 'object') active = item.selectedRoute.includes(props.route.path);
+		}
+		if (item.isVisible(props.route.path)) {
+			return (
+				<Menu.Item key={index.toString()} name={index.toString()} fitted as={Item} active={active}>
+					<item.component {...props} />
+				</Menu.Item>
+			);
+		}
+		return null;
+	});
+
+	// return (
+	// 	<Menu
+	// 		vertical
+	// 		style={{borderRadius: 0}}
+	// 		inverted
+	// 		items={sortedMenuItems.map((item, index) => {
+	// 			let active = false;
+	// 			if (item.selectedRoute) {
+	// 				if (typeof item.selectedRoute === 'string') active = item.selectedRoute === props.route.path;
+	// 				else if (typeof item.selectedRoute === 'object') active = item.selectedRoute.includes(props.route.path);
+	// 			}
+	// 			if (item.isVisible(props.route.path)) {
+	// 				return (
+	// 					<Menu.Item key={index.toString()} name={index.toString()} fitted as={Item} active={active}>
+	// 						<item.component {...props} />
+	// 					</Menu.Item>
+	// 				);
+	// 			}
+	// 			return null;
+	// 		})}
+	// 	/>
+	// );
 }

@@ -1,6 +1,6 @@
 import debug from 'debug';
-import {Segment} from 'semantic-ui-react';
-import React, {useState, createContext} from 'react';
+import {Menu, Segment, Sidebar} from 'semantic-ui-react';
+import React, {useState, createContext, useEffect} from 'react';
 import UserMenu from './UserMenu';
 // @ts-ignore
 import styles from './styles.css';
@@ -16,11 +16,12 @@ interface Props {
 		footer: React.ElementType;
 	};
 }
-
 interface MenuState {
 	currentUser?: {profile: {firstName: string; lastName: string; id: string}};
 	showStatusBar: boolean;
+	showSideMenu: boolean;
 	activeItem: string;
+	isMobile: boolean;
 }
 // @ts-ignore
 export const MenuContext = createContext<[MenuState, () => {}]>([{}, () => {}]);
@@ -28,6 +29,9 @@ export const MenuContext = createContext<[MenuState, () => {}]>([{}, () => {}]);
 export default function THR4Layout(props: Props) {
 	const [menuState, setMenuState] = useState({
 		showStatusBar: true,
+		showSideMenu: false,
+		currentUser: {},
+		isMobile: window.innerWidth < 900,
 	});
 
 	const menu = props.route.menu ? (
@@ -46,6 +50,14 @@ export default function THR4Layout(props: Props) {
 
 	const footer = props.route.footer ? <props.route.footer {...props} /> : null;
 
+	useEffect(() => {
+		function onResize(ev) {
+			setMenuState(prevState => ({...prevState, isMobile: ev.target.innerWidth < 900}));
+		}
+		window.addEventListener('resize', onResize);
+		return () => window.removeEventListener('resize', onResize);
+	});
+
 	return (
 		<div className={styles.parent}>
 			<MenuContext.Provider value={[menuState, setMenuState]}>
@@ -53,10 +65,32 @@ export default function THR4Layout(props: Props) {
 					{menu}
 					{menuState.showStatusBar && statusbar}
 				</div>
-				<Segment attached className={styles.wrapper}>
-					{sidebar}
-					<div className={styles.content}>{content}</div>
-				</Segment>
+				{menuState.isMobile ? (
+					<Sidebar.Pushable attached as={Segment} className={styles.wrapper}>
+						<Sidebar
+							as={Menu}
+							animation="push"
+							inverted
+							onHide={() => setMenuState(prevState => ({...prevState, showSideMenu: false}))}
+							vertical
+							visible={menuState.showSideMenu}
+						>
+							{sidebar}
+						</Sidebar>
+						<Sidebar.Pusher>
+							<Segment basic>
+								<div className={styles.content}>{content}</div>
+							</Segment>
+						</Sidebar.Pusher>
+					</Sidebar.Pushable>
+				) : (
+					<Segment attached className={styles.wrapper}>
+						<Menu vertical style={{borderRadius: 0, margin: 0}} inverted>
+							{sidebar}
+						</Menu>
+						<div className={styles.content}>{content}</div>
+					</Segment>
+				)}
 				{footer}
 			</MenuContext.Provider>
 		</div>

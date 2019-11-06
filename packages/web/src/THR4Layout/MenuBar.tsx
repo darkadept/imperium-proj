@@ -128,29 +128,30 @@ const menuItems: MenuItem[] = [
 ];
 
 export default function MenuBar(props: Props) {
-	const [state] = useContext(MenuContext);
+	const [menuState] = useContext(MenuContext);
 
 	if (menuItems.length < 1) return <></>;
 	const sortedMenuItems = sortBy(menuItems, 'priority');
 
 	return (
-		<Menu style={{margin: 0, borderRadius: 0, backgroundColor: 'rgb(45, 45, 45)'}} borderless inverted>
+		<Menu style={{margin: 0, borderRadius: 0, backgroundColor: 'rgb(45, 45, 45)'}} borderless inverted stackable>
 			<Menu.Item fitted="vertically">
 				<h3 style={{color: 'rgb(189, 197, 73)'}}>
-					{get(state, 'currentUser.profile.id', '0000')} - {get(state, 'currentUser.profile.firstName', '0000')}{' '}
-					{get(state, 'currentUser.profile.lastName', '0000')}
+					{get(menuState, 'currentUser.profile.id', '0000')} - {get(menuState, 'currentUser.profile.firstName', '0000')}{' '}
+					{get(menuState, 'currentUser.profile.lastName', '0000')}
 				</h3>
 			</Menu.Item>
-			{sortedMenuItems.map((item, index) => {
-				if (item.isVisible(props.route.path)) {
-					return (
-						<Menu.Item key={index.toString()} fitted="vertically">
-							{item.component}
-						</Menu.Item>
-					);
-				}
-				return null;
-			})}
+			{!menuState.isMobile &&
+				sortedMenuItems.map((item, index) => {
+					if (item.isVisible(props.route.path)) {
+						return (
+							<Menu.Item key={index.toString()} fitted="vertically">
+								{item.component}
+							</Menu.Item>
+						);
+					}
+					return null;
+				})}
 		</Menu>
 	);
 }

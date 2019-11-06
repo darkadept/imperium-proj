@@ -28,6 +28,11 @@
 	border: 0px solid transparent !important; /* this is a segment, and they seem to have a 1px white border by default */
 }
 
+.staticVerticalMenu {
+	border-radius: 0;
+	margin: 0;
+}
+
 .menu {
 	flex-basis: 185px;
 	flex-grow: 0;
