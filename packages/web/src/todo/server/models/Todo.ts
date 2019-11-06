@@ -8,12 +8,7 @@ import {
 	ManyToOne,
 	PrimaryGeneratedColumn,
 } from 'typeorm';
-import {
-	HistoryActionColumn,
-	HistoryActionType,
-	HistoryEntityInterface,
-	HistorySubscriber,
-} from 'typeorm-revisions';
+import {HistoryActionColumn, HistoryActionType, HistoryEntityInterface, HistorySubscriber} from 'typeorm-revisions';
 import OrderedDataLoader from '../../lib/OrderedDataLoader';
 import {User} from './User';
 
@@ -31,7 +26,7 @@ class Todo extends BaseEntity {
 	id!: number;
 
 	@ManyToOne(type => User, user => user.todos)
-	user: User;
+	user!: User;
 
 	@Column('varchar')
 	title!: string;
@@ -55,9 +50,10 @@ class Todo extends BaseEntity {
 
 	constructor(todo: TodoInput = {}) {
 		super();
-		const {title, completed} = todo;
+		const {title, completed, user} = todo;
 		this.title = title || 'New Todo';
 		this.completed = completed || false;
+		this.user = user;
 	}
 }
 
@@ -66,7 +62,7 @@ class TodoHistory extends Todo implements HistoryEntityInterface {
 	@Column('integer')
 	public originalID!: number;
 
-	@CreateDateColumn()
+	@CreateDateColumn({type: 'timestamp with time zone'})
 	public makeActionAt!: Date;
 
 	@HistoryActionColumn()
@@ -91,6 +87,7 @@ class TodoHistorySubscriber extends HistorySubscriber<Todo, TodoHistory> {
 	get entity() {
 		return Todo;
 	}
+
 	get historyEntity() {
 		return TodoHistory;
 	}

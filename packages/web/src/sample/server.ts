@@ -1,3 +1,4 @@
+import {ImperiumServerModuleFunction} from '@imperium/core';
 import debug from 'debug';
 import Sample from './server/graphql/Sample.graphqls';
 
@@ -5,7 +6,7 @@ const d = debug('app.sample');
 
 let a = 0;
 
-export default function sample() {
+const sample: ImperiumServerModuleFunction = () => {
 	return {
 		name: 'Sample',
 		schema: [Sample],
@@ -31,11 +32,13 @@ export default function sample() {
 			if (pubsub) {
 				res.Subscription = {
 					getItChanged: {
-						subscribe: () => pubsub.asyncIterator(['x']),
+						subscribe: () => pubsub.asyncIterator('x'),
 					},
 				};
 			}
 			return res;
 		},
 	};
-}
+};
+
+export default sample;

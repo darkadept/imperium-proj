@@ -1,6 +1,7 @@
 import React from 'react';
-import {RouteComponentProps} from 'react-router-dom';
 import {useQuery} from '@apollo/react-hooks';
+import Moment from 'moment';
+import {RouteComponentProps} from 'react-router-dom';
 import TodoInput from '../components/TodoInput';
 import getUser from '../graphql/getUser.graphql';
 import {User, TodoHistory} from '../types';
@@ -19,12 +20,30 @@ export default function Users(props: RouteComponentProps<{id: number}>) {
 						<TodoInput key={todo.id} value={todo} />
 					))}
 					<h3>{data.getUser.firstName}`s Todos History</h3>
-					{data.getTodoHistory.reverse().map(t => (
-						<p key={t.id}>
-							Todo #{t.id} was {t.action} at {new Date(t.makeActionAt).toLocaleTimeString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })} with values{' '}
-							<pre style={{display: 'inline'}}>{JSON.stringify({title: t.title, completed: t.completed})}</pre>
-						</p>
-					))}
+					<table style={{borderCollapse: 'collapse'}}>
+						<thead>
+							<tr>
+								<th style={{border: '1px solid black', padding: '.5rem'}}>Action</th>
+								<th style={{border: '1px solid black', padding: '.5rem'}}>What</th>
+								<th style={{border: '1px solid black', padding: '.5rem'}}>When</th>
+							</tr>
+						</thead>
+						<tbody>
+							{data.getTodoHistory.reverse().map(t => (
+								<tr key={t.id}>
+									<td style={{border: '1px solid black', padding: '.5rem'}}>{t.action}</td>
+									<td style={{border: '1px solid black', padding: '.5rem'}}>
+										<pre style={{display: 'inline'}}>
+											{JSON.stringify({id: t.originalID, title: t.title, completed: t.completed})}
+										</pre>
+									</td>
+									<td style={{border: '1px solid black', padding: '.5rem'}}>
+										{Moment(new Date(t.makeActionAt)).fromNow()}
+									</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
 				</>
 			) : (
 				<h3>Loading...</h3>

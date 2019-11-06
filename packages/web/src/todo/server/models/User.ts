@@ -67,7 +67,7 @@ class UserHistory extends User implements HistoryEntityInterface {
 	@Column('integer')
 	public originalID!: number;
 
-	@CreateDateColumn()
+	@CreateDateColumn({type: 'timestamp with time zone'})
 	public makeActionAt!: Date;
 
 	@HistoryActionColumn()
