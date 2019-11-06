@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.0",
+    "@types/node": "^12.11.2",
     "@imperium/auth": "^4.0.0-alpha.7",
     "@imperium/core": "^4.0.0-alpha.7",
     "@imperium/graphql": "^4.0.0-alpha.8",
@@ -37,6 +38,8 @@
     "dotenv": "^8.2.0",
     "graphql": "^14.5.8",
     "lodash": "^4.17.15",
+    "pg": "^7.12.1",
+    "typeorm": "^0.2.19",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-router-dom": "^5.1.2"

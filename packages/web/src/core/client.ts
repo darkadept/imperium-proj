@@ -2,6 +2,7 @@ import debug from 'debug';
 import ImperiumClient from '@imperium/core/client';
 import {RouteDirector} from '@imperium/router';
 import clientModules from './clientModules';
+import routes from '../users/client/routes';
 import DefaultComponent from '../sample/client/components/DefaultComponent';
 
 const d = debug('app.client');
@@ -16,6 +17,7 @@ const client = new ImperiumClient({
 		},
 		rootRoute: {path: '/', content: DefaultComponent, exact: true},
 	},
+	routes,
 });
 
 client.start().catch(err => {

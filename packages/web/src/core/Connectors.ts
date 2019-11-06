@@ -1,38 +1,28 @@
-// import {connect} from 'mongoose';
 import {ImperiumConnectors} from '@imperium/core';
-// import {SharedCache} from '@thx/extras/server';
-// import redis from 'redis';
+import {ConnectionManager, Connection} from 'typeorm';
+import path from 'path';
 
 export default class Connectors implements ImperiumConnectors {
-	// _redisClient: any;
+	_redisClient: any;
+	_postgresConnection?: Connection;
 
-	async create(server) {
-		console.log(server);
-		// const mongoose = await connect(
-		// 	process.env.MONGOURL,
-		// 	{useNewUrlParser: true, useUnifiedTopology: true},
-		// );
-		//
-		// this._redisClient = redis.createClient({
-		// 	host: process.env.REDIS_HOST,
-		// 	port: parseInt(process.env.REDIS_PORT || '6379', 10),
-		// 	db: parseInt(process.env.REDIS_DB || '0', 10),
-		// });
-		//
-		// const sharedCache = new SharedCache({redis: this._redisClient, prefix: 'IMPPROJ_'});
-		//
-		// return {mongo: mongoose.connection.db, mongoose, sharedCache};
-		return {};
+	async create() {
+		const connectionManager = new ConnectionManager();
+		this._postgresConnection = connectionManager.create({
+			type: 'postgres',
+			username: process.env.PG_USERNAME,
+			password: process.env.PG_PASSWORD,
+			database: process.env.PG_DATABASE,
+			port: (process.env.PG_PORT as unknown) as number,
+			synchronize: true,
+			entities: [path.resolve(__dirname, '../users/models/*')],
+		});
+		await this._postgresConnection.connect();
+		return {pg: this._postgresConnection};
+		// return {};
 	}
 
 	async close() {
-		// eslint-disable-next-line no-console
-		// console.log('Closing connectors');
-		// await new Promise(resolve => {
-		// 	this._redisClient.quit(() => {
-		// 		resolve();
-		// 	});
-		// });
-		// await new Promise(resolve => setImmediate(resolve));
+		if (this._postgresConnection) await this._postgresConnection.close();
 	}
 }
