@@ -1,3 +1,4 @@
+// eslint-disable-next-line max-classes-per-file
 import {BaseEntity, Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn} from 'typeorm';
 
 /* https://stackoverflow.com/a/195556/7704062

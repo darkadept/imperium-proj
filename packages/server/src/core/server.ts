@@ -1,5 +1,5 @@
 import debug from 'debug';
-import ImperiumServer from '@imperium/core/server';
+import ImperiumServer from '@imperium/server';
 import Connectors from './Connectors';
 import serverModules from './serverModules';
 

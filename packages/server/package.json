@@ -1,0 +1,39 @@
+{
+  "name": "@imperium-proj/server",
+  "description": "Imperium test server project",
+  "version": "4.0.0",
+  "author": "Mike Kornelson <darkadept@durbn.net>",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:darkadept/imperium-proj.git"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "engines": {
+    "node": ">=12"
+  },
+  "scripts": {
+    "start": "imperium dev-server imperium.js",
+    "prod": "imperium prod-server",
+    "build": "imperium build-server imperium.js",
+    "lint": "eslint --cache --ext ts,js src",
+    "lint:fix": "eslint --cache --fix --ext ts,js src",
+    "ts": "tsc",
+    "test": "jest",
+    "prettier": "prettier"
+  },
+  "dependencies": {
+    "@imperium/graphql-server": "^4.0.0-alpha.13",
+    "@imperium/server": "^4.0.0-alpha.13",
+    "@thx/extras": "^10.4.0",
+    "@types/node": "^12.11.2",
+    "debug": "^4.1.1",
+    "dotenv": "^8.2.0",
+    "lodash": "^4.17.15",
+    "pg": "^7.12.1",
+    "typeorm": "^0.2.19"
+  },
+  "devDependencies": {
+    "@imperium/dev": "^4.0.0-alpha.11"
+  }
+}

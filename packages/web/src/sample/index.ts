@@ -3,8 +3,8 @@ import loadable from '@loadable/component';
 // import HelloWorld from './client/HelloWorld';
 
 // These are the dynamic routes
-const HelloWorld = loadable(() => import('./client/components/HelloWorld'));
-const GraphqlTest = loadable(() => import('./client/components/GraphqlTest'));
+const HelloWorld = loadable(() => import('./components/HelloWorld'));
+const GraphqlTest = loadable(() => import('./components/GraphqlTest'));
 
 export default function() {
 	return {

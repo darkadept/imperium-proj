@@ -10,5 +10,5 @@ export default function TestQuery() {
 
 	d('query', loading, error, data);
 
-	return <div>Test Query: {loading ? 'Loading' : data.getIt}</div>;
+	return <div>Test Query: {loading ? 'Loading' : data.getCounter}</div>;
 }

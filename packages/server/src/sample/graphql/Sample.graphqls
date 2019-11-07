@@ -1,11 +1,11 @@
 extend type Query {
-	getIt: String
+	getCounter: Int
 }
 
 extend type Mutation {
-	changeIt: String
+	incCounter: Int
 }
 
 extend type Subscription {
-	getItChanged: String
+	counterChanged: Int
 }

@@ -3,12 +3,12 @@ import React from 'react';
 import {useSubscription} from '@apollo/react-hooks';
 import subscribe from '../graphql/subscribe.graphql';
 
-const d = debug('app.core.TestQuery');
+const d = debug('app.core.TestSubscription');
 
 export default function TestSubscription() {
 	const {data, loading} = useSubscription(subscribe);
 
 	d('subscription', loading, data);
 
-	return <div>Test Subscription: {loading ? 'Loading' : data.getItChanged}</div>;
+	return <div>Test Subscription: {loading ? 'Loading' : data.counterChanged}</div>;
 }

@@ -1,9 +1,9 @@
 import debug from 'debug';
-import ImperiumClient from '@imperium/core/client';
+import ImperiumClient from '@imperium/client';
 import {RouteDirector} from '@imperium/router';
 import clientModules from './clientModules';
-import routes from '../users/client/routes';
-import DefaultComponent from '../sample/client/components/DefaultComponent';
+import routes from '../users/routes';
+import DefaultComponent from '../sample/components/DefaultComponent';
 
 const d = debug('app.client');
 
@@ -23,11 +23,3 @@ const client = new ImperiumClient({
 client.start().catch(err => {
 	d(err);
 });
-
-// TODO working on HMR
-// if (module.hot) {
-// 	module.hot.accept('./clientModules', () => {
-// 		d('Hot Accept: clientModules');
-// 		client.renderRoot(clientModules, RouteDirector);
-// 	});
-// }

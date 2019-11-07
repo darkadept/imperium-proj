@@ -3,7 +3,7 @@ module.exports = {
 		imperiumDevelopmentAliases: false,
 	},
 	production: {
-		client: {
+		server: {
 			devtool: 'source-map',
 		},
 	},
