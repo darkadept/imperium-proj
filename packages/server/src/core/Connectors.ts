@@ -1,19 +1,31 @@
-import {ImperiumConnectors} from '@imperium/server';
-import {ConnectionManager, Connection} from 'typeorm';
-import path from 'path';
+import {ImperiumConnectors, ImperiumServer} from '@imperium/server';
+import {Connection, createConnection} from 'typeorm';
 
 export default class Connectors implements ImperiumConnectors {
 	_postgresConnection?: Connection;
 
-	async create() {
-		const connectionManager = new ConnectionManager();
-		this._postgresConnection = connectionManager.create({
+	async create(server: ImperiumServer) {
+		// This gets all the entities from all of my modules.
+		const entities = server.modules.reduce((memo, module) => {
+			if (module.entities && module.entities instanceof Function) {
+				return [...memo, ...module.entities()];
+			}
+			return memo;
+		}, []);
+		const subscribers = server.modules.reduce((memo, module) => {
+			if (module.subscribers && module.subscriber instanceof Function) {
+				return [...memo, ...module.subscribers()];
+			}
+			return memo;
+		}, []);
+
+		this._postgresConnection = await createConnection({
 			type: 'postgres',
 			url: process.env.POSTGRESQL_URL,
-			synchronize: true,
-			entities: [path.resolve(__dirname, '../users/models/*')],
+			synchronize: true, // dev only
+			entities,
+			subscribers,
 		});
-		await this._postgresConnection.connect();
 
 		return {pg: this._postgresConnection};
 	}

@@ -29,9 +29,11 @@
     "@types/node": "^12.11.2",
     "debug": "^4.1.1",
     "dotenv": "^8.2.0",
+    "faker": "^4.1.0",
     "lodash": "^4.17.15",
     "pg": "^7.12.1",
-    "typeorm": "^0.2.19"
+    "typeorm": "^0.2.20",
+    "typeorm-revisions": "^0.0.5"
   },
   "devDependencies": {
     "@imperium/dev": "^4.0.0-alpha.11"

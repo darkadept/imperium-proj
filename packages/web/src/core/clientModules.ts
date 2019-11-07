@@ -1,6 +1,6 @@
 import router from '@imperium/router';
 import graphql from '@imperium/graphql-client';
-import users from '../users';
+import todo from '../todo';
 import sample from '../sample';
 
-export default [router, graphql, users, sample];
+export default [router, graphql, todo, sample];
