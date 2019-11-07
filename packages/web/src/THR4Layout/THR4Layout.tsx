@@ -29,7 +29,7 @@ export const MenuContext = createContext<[MenuState, () => {}]>([{}, () => {}]);
 export default function THR4Layout(props: Props) {
 	const [menuState, setMenuState] = useState({
 		showStatusBar: true,
-		showSideMenu: false,
+		showSideMenu: true,
 		currentUser: {},
 		isMobile: window.innerWidth < 900,
 	});
@@ -69,7 +69,7 @@ export default function THR4Layout(props: Props) {
 					<Sidebar.Pushable attached as={Segment} className={styles.wrapper}>
 						<Sidebar
 							as={Menu}
-							animation="push"
+							animation="slide along"
 							inverted
 							onHide={() => setMenuState(prevState => ({...prevState, showSideMenu: false}))}
 							vertical

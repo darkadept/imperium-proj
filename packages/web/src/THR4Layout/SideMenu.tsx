@@ -2,7 +2,7 @@ import debug from 'debug';
 import {History} from 'history';
 import sortBy from 'lodash/sortBy';
 import React, {useContext} from 'react';
-import {Dropdown, Icon, Input, Item, Menu} from 'semantic-ui-react';
+import {Dropdown, Icon, Input, Item, Menu, Accordion, Button, Divider} from 'semantic-ui-react';
 import {MenuContext} from './THR4Layout';
 
 const d = debug('app.THR4Layout.SideMenu');
@@ -93,21 +93,30 @@ export default function SideMenu(props: Props): JSX.Element {
 			},
 		},
 		{
-			component: propss => (
-				<Dropdown key="dropdownMenu" item icon="sidebar" text="Options">
-					<Dropdown.Menu>
-						<Dropdown.Item onClick={() => propss.history.push('/user')}>User</Dropdown.Item>
-						<Dropdown.Item onClick={() => propss.history.push('/client')}>Client</Dropdown.Item>
-						<Dropdown.Item>Open</Dropdown.Item>
-						<Dropdown.Item>Save...</Dropdown.Item>
-						<Dropdown.Item>Edit Permissions</Dropdown.Item>
-						<Dropdown.Divider />
-						<Dropdown.Header>Export</Dropdown.Header>
-						<Dropdown.Item>Share</Dropdown.Item>
-					</Dropdown.Menu>
-				</Dropdown>
-			),
-			priority: 1,
+			component: propss => {
+				return (
+					<Accordion as={Menu.Item} fitted>
+						<Accordion.Title
+							fitted="vertically"
+							as={Menu.Item}
+							onClick={() => setMenuState(prevState => ({...prevState, activeItem: !prevState.activeItem}))}
+							active={menuState.activeItem}
+						>
+							<Icon name="sidebar" />
+							Options
+						</Accordion.Title>
+						<Accordion.Content active={menuState.activeItem}>
+							<Menu.Item onClick={() => propss.history.push('/user')}>User</Menu.Item>
+							<Menu.Item onClick={() => propss.history.push('/client')}>Client</Menu.Item>
+							<Menu.Item>Open</Menu.Item>
+							<Menu.Item>Save...</Menu.Item>
+							<Menu.Item>Edit Permissions</Menu.Item>
+							<Menu.Item>Share</Menu.Item>
+						</Accordion.Content>
+					</Accordion>
+				);
+			},
+			priority: 7,
 			isVisible: () => {
 				return true;
 			},
@@ -151,27 +160,4 @@ export default function SideMenu(props: Props): JSX.Element {
 		}
 		return null;
 	});
-
-	// return (
-	// 	<Menu
-	// 		vertical
-	// 		style={{borderRadius: 0}}
-	// 		inverted
-	// 		items={sortedMenuItems.map((item, index) => {
-	// 			let active = false;
-	// 			if (item.selectedRoute) {
-	// 				if (typeof item.selectedRoute === 'string') active = item.selectedRoute === props.route.path;
-	// 				else if (typeof item.selectedRoute === 'object') active = item.selectedRoute.includes(props.route.path);
-	// 			}
-	// 			if (item.isVisible(props.route.path)) {
-	// 				return (
-	// 					<Menu.Item key={index.toString()} name={index.toString()} fitted as={Item} active={active}>
-	// 						<item.component {...props} />
-	// 					</Menu.Item>
-	// 				);
-	// 			}
-	// 			return null;
-	// 		})}
-	// 	/>
-	// );
 }

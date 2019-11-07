@@ -31,6 +31,7 @@ export default function HeaderBar(props: Props) {
 			{menuState.isMobile ? (
 				<Menu.Item fitted="vertically">
 					<Icon
+						className={menuState.showSideMenu ? 'rotated clockwise' : undefined}
 						name="sidebar"
 						size="large"
 						onClick={() => setMenuState(prevState => ({...prevState, showSideMenu: !menuState.showSideMenu}))}

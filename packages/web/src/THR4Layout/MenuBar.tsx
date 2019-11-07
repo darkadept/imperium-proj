@@ -79,12 +79,12 @@ const menuItems: MenuItem[] = [
 	},
 	{
 		component: <Dropdown key="dropdown" placeholder="Select Friend" selection options={friendOptions} />,
-		priority: 2,
+		priority: 5,
 		isVisible: () => true,
 	},
 	{
 		component: <Input key="input" label="Input" />,
-		priority: 2,
+		priority: 5,
 		isVisible: contextType => contextType === '/user',
 	},
 	{
@@ -134,12 +134,12 @@ export default function MenuBar(props: Props) {
 	const sortedMenuItems = sortBy(menuItems, 'priority');
 
 	return (
-		<Menu style={{margin: 0, borderRadius: 0, backgroundColor: 'rgb(45, 45, 45)'}} borderless inverted stackable>
+		<Menu style={{margin: 0, borderRadius: 0, backgroundColor: 'rgb(45, 45, 45)'}} borderless inverted>
 			<Menu.Item fitted="vertically">
-				<h3 style={{color: 'rgb(189, 197, 73)'}}>
+				<label style={{color: 'rgb(189, 197, 73)', fontSize: '1.5em'}}>
 					{get(menuState, 'currentUser.profile.id', '0000')} - {get(menuState, 'currentUser.profile.firstName', '0000')}{' '}
 					{get(menuState, 'currentUser.profile.lastName', '0000')}
-				</h3>
+				</label>
 			</Menu.Item>
 			{!menuState.isMobile &&
 				sortedMenuItems.map((item, index) => {
