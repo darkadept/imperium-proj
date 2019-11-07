@@ -12,7 +12,7 @@ export default function GraphqlTest() {
 		<>
 			<h1>GraphqlTest</h1>
 			<Link to="/">Route to Home</Link>
-			{/*<TestQuery />*/}
+			<TestQuery />
 			<TestMutation />
 			<TestSubscription />
 		</>
