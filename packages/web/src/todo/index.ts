@@ -6,9 +6,9 @@ export default function TodoClientModule() {
 	return {
 		name: 'Todo',
 		routes: [
-			{path: '/user', component: Users, exact: true},
-			{path: '/user/:id', component: User, exact: true},
-			{path: '/todo', component: Todos},
+			{path: '/user', content: Users, exact: true},
+			{path: '/user/:id', content: User, exact: true},
+			{path: '/todo', content: Todos},
 		],
 	};
 }

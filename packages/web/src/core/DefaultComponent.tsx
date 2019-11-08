@@ -15,6 +15,9 @@ export default function DefaultComponent() {
 				<li>
 					<Link to="/graphqltest">Route to Graphql Test</Link>
 				</li>
+				<li>
+					<Link to="/user">Users</Link>
+				</li>
 			</ul>
 		</>
 	);

@@ -2,7 +2,7 @@ import debug from 'debug';
 import ImperiumClient from '@imperium/client';
 import {RouteDirector} from '@imperium/router';
 import clientModules from './clientModules';
-import DefaultComponent from '../sample/components/DefaultComponent';
+import DefaultComponent from './DefaultComponent';
 
 const d = debug('app.client');
 
