@@ -1,34 +1,34 @@
 {
-	"name": "imperium-proj",
-	"version": "0.1.0",
-	"description": "A project that uses Imperium Framework",
-	"main": "index.js",
-	"author": "Mike Kornelson",
-	"license": "MIT",
-	"scripts": {
-		"start": "imperium dev",
-		"prod": "imperium prod",
-		"build": "imperium build",
-		"lint": "eslint --cache 'src/**/*.js'",
-		"dev:link": "yarn link @imperium/dev-deps && yarn link @imperium/eslint-config-imperium && yarn link @imperium/auth && yarn link @imperium/core && yarn link @imperium/graphql && yarn link @imperium/babel-preset-imperium"
-	},
-	"devDependencies": {
-		"@imperium/dev-deps": "../imperium/packages/dev-deps",
-		"@imperium/eslint-config-imperium": "../imperium/packages/eslint-config-imperium"
-	},
-	"dependencies": {
-		"@imperium/auth": "../imperium/packages/auth",
-		"@imperium/core": "../imperium/packages/core",
-		"@imperium/graphql": "../imperium/packages/graphql",
-		"@thx/controls": "^8.0.0",
-		"@types/zen-observable": "^0.8.0",
-		"eslint": "^5.9.0",
-		"express": "^4.16.4",
-		"immutable": "^3.8.2",
-		"mongodb": "^3.1.10",
-		"react": "^16.6.3",
-		"react-dom": "^16.6.3",
-		"react-router-dom": "^4.3.1",
-		"semantic-ui-react": "^0.83.0"
-	}
+  "author": "Mike Kornelson <darkadept@durbn.net>",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:darkadept/thr4.git"
+  },
+  "bugs": {
+    "url": "https://github.com/darkadept/thr4/issues"
+  },
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "lerna": "lerna",
+    "build": "lerna run build",
+    "lint": "lerna run lint",
+    "lint:fix": "lerna run lint:fix",
+    "ts": "lerna run ts",
+    "test": "lerna run test --stream --concurrency 1"
+  },
+  "devDependencies": {
+    "@imperium/eslint-config-imperium": "^4.0.0-alpha.7",
+    "@imperium/prettier-config-imperium": "^4.0.0-alpha.2",
+    "@types/react": "^16.9.7",
+    "eslint": "^6.5.1",
+    "lerna": "^3.18.1",
+    "prettier": "^1.18.2",
+    "typescript": "^3.6.4"
+  }
 }
