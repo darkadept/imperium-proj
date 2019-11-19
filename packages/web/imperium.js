@@ -7,4 +7,7 @@ module.exports = {
 			devtool: 'source-map',
 		},
 	},
+	source: {
+		clientIndex: './core/client.tsx',
+	},
 };

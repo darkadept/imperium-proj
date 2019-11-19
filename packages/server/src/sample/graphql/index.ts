@@ -1,15 +1,17 @@
 import debug from 'debug';
-import Sample from './Sample.graphqls';
+import {IImperiumServer} from '@imperium/server';
+import {ImperiumResolvers} from '@imperium/graphql-server';
 import MyCounter from '../models/MyCounter';
+import Sample from './Sample.graphqls';
 
 const d = debug('app.sample.graphql');
 
 export const schema = [Sample];
 
-export function resolvers(server) {
-	const pubsub = server.options.graphqlPubSub;
+export function resolvers(server: IImperiumServer): ImperiumResolvers {
+	const {pubsub} = server.connectors;
 
-	const res = {
+	const res: ImperiumResolvers = {
 		Query: {
 			getCounter() {
 				return MyCounter.getCounter();
@@ -32,5 +34,6 @@ export function resolvers(server) {
 			},
 		};
 	}
+
 	return res;
 }

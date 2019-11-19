@@ -9,10 +9,8 @@ export default function() {
 	const server = new ImperiumServer({
 		connectors: new Connectors(),
 		serverModules,
-		options() {
-			return {
-				accessToken: 'blah',
-			};
+		environment: {
+			accessToken: 'blah',
 		},
 	});
 

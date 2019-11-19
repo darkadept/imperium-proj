@@ -1,4 +1,6 @@
 import loadable from '@loadable/component';
+import {ImperiumClientModule} from '@imperium/client';
+import {ImperiumRouterClientModule} from '@imperium/router';
 // These were the static routes
 // import HelloWorld from './client/HelloWorld';
 
@@ -6,7 +8,7 @@ import loadable from '@loadable/component';
 const HelloWorld = loadable(() => import('./components/HelloWorld'));
 const GraphqlTest = loadable(() => import('./components/GraphqlTest'));
 
-export default function() {
+export default function(): ImperiumClientModule & ImperiumRouterClientModule {
 	return {
 		name: 'Sample',
 		routes: [

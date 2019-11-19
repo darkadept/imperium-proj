@@ -23,19 +23,23 @@
     "prettier": "prettier"
   },
   "dependencies": {
-    "@imperium/graphql-server": "^4.0.0-alpha.13",
-    "@imperium/server": "^4.0.0-alpha.13",
+    "@imperium/graphql-server": "^4.0.0-alpha.17",
+    "@imperium/server": "^4.0.0-alpha.17",
     "@thx/extras": "^10.4.0",
-    "@types/node": "^12.11.2",
     "debug": "^4.1.1",
     "dotenv": "^8.2.0",
     "faker": "^4.1.0",
+    "graphql": "^14.5.8",
+    "graphql-redis-subscriptions": "^2.1.1",
+    "graphql-subscriptions": "^1.1.0",
     "lodash": "^4.17.15",
+    "mongoose": "^5.7.11",
     "pg": "^7.12.1",
+    "redis": "^2.8.0",
     "typeorm": "^0.2.20",
     "typeorm-revisions": "^0.0.5"
   },
   "devDependencies": {
-    "@imperium/dev": "^4.0.0-alpha.11"
+    "@imperium/dev": "^4.0.0-alpha.16"
   }
 }

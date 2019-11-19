@@ -12,7 +12,7 @@ export default function TestMutation() {
 
 	return (
 		<div>
-			<button type="button" onClick={doChange}>
+			<button type="button" onClick={() => doChange()}>
 				Test Mutation
 			</button>
 		</div>
