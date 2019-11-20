@@ -1,3 +1,4 @@
+import {IContextManager} from '@imperium/server';
 import debug from 'debug';
 import {
 	BaseEntity,
@@ -9,7 +10,7 @@ import {
 	PrimaryGeneratedColumn,
 } from 'typeorm';
 import {HistoryActionColumn, HistoryActionType, HistoryEntityInterface, HistorySubscriber} from 'typeorm-revisions';
-import OrderedDataLoader from '../../../../web/src/todo/lib/OrderedDataLoader';
+import OrderedDataLoader from '../lib/OrderedDataLoader';
 import {Todo} from './Todo';
 
 const d = debug('app.todo.server.models.User');
@@ -42,12 +43,13 @@ class User extends BaseEntity {
 		return new OrderedDataLoader<number, User>(keys => this.findByIds(keys));
 	}
 
-	static get(args: UserInput, context) {
+	static get(args: UserInput, context: IContextManager<typeof User.createLoader>) {
+		// cannot use loadMany unless we have the id's or the id field
 		return this.find(args);
 	}
 
-	static getOne(id: number, context) {
-		return context.models.User.load(id);
+	static getOne(id: number, context: IContextManager<typeof User.createLoader>) {
+		return context.User.load(id);
 	}
 
 	constructor(user?: UserInput) {
