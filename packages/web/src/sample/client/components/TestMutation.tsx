@@ -10,5 +10,9 @@ export default function TestMutation() {
 
 	d('mutation', loading, data);
 
-	return <div><button onClick={doChange}>Test Mutation</button></div>;
+	return (
+		<div>
+			<button onClick={doChange}>Test Mutation</button>
+		</div>
+	);
 }

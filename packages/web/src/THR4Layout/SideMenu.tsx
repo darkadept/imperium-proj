@@ -2,7 +2,7 @@ import debug from 'debug';
 import {History} from 'history';
 import sortBy from 'lodash/sortBy';
 import React, {useContext} from 'react';
-import {Dropdown, Icon, Input, Item, Menu, Accordion, Button, Divider} from 'semantic-ui-react';
+import {Icon, Input, Item, Menu, Accordion} from 'semantic-ui-react';
 import {MenuContext} from './THR4Layout';
 
 const d = debug('app.THR4Layout.SideMenu');
