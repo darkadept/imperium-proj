@@ -1,4 +1,4 @@
-import {IContextManager} from '@imperium/server';
+import {IImperiumServer} from '@imperium/server';
 import debug from 'debug';
 import {
 	BaseEntity,
@@ -22,6 +22,17 @@ interface UserInput {
 	todos?: Todo[];
 }
 
+export type ContextMapFunc = (server: IImperiumServer, contextManager: IContextManager) => ContextMap;
+export type Context = any;
+export type ContextMap = {
+	readonly [prop: string]: Context;
+};
+export type IContextManager<T extends ContextMap = any> = {
+	addContext(contextFunc: ContextMapFunc): void;
+	auth: any;
+	readonly server: IImperiumServer;
+} & T;
+
 @Entity()
 class User extends BaseEntity {
 	@PrimaryGeneratedColumn()
@@ -43,12 +54,12 @@ class User extends BaseEntity {
 		return new OrderedDataLoader<number, User>(keys => this.findByIds(keys));
 	}
 
-	static get(args: UserInput, context: IContextManager<typeof User.createLoader>) {
+	static get(args: UserInput, context: IContextManager<{User: OrderedDataLoader<number, User>}>) {
 		// cannot use loadMany unless we have the id's or the id field
 		return this.find(args);
 	}
 
-	static getOne(id: number, context: IContextManager<typeof User.createLoader>) {
+	static getOne(id: number, context: IContextManager<{User: OrderedDataLoader<number, User>}>) {
 		return context.User.load(id);
 	}
 
